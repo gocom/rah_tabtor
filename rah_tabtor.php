@@ -78,18 +78,11 @@
 			) PACK_KEYS=1 AUTO_INCREMENT=1 CHARSET=utf8"
 		);
 		
-		/*
-			Drop the old unused tables, used by older versions
-		*/
-		
-		if($current == 'base')
+		if($current == 'base') {
 			@safe_query(
 				'DROP TABLE IF EXISTS '.safe_pfx('rah_tabtor_prefs')
 			);
-		
-		/*
-			Add some stuff to the prefs table
-		*/
+		}
 		
 		set_pref('rah_tabtor_advanced_editor', '0', 'rah_tabtor', 2, '', 0);
 		set_pref('rah_tabtor_version', $version, 'rah_tabtor', 2, '', 0);
@@ -232,12 +225,6 @@
 			)
 		);
 		
-		
-		/*
-			If editing, not creating new,
-			we need the existing information
-		*/
-		
 		if(($id = gps('id')) && $id && !ps('id')) {
 			
 			$rs = 
@@ -275,13 +262,6 @@
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_page').'<br />'.n;
 		
-		/*
-			Show easy dropdown if possible,
-			otherwise plain text field
-		*/
-		
-		
-		
 		if($tabs !== false && $advanced_editor == 0 && (empty($page) || isset($tabs['events'][$page]))) {
 			
 			$out[] =
@@ -309,11 +289,6 @@
 			'	<p>'.n.
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_group').'<br />'.n;
-		
-		/*
-			You don't like advanced? Understood.
-			Let's see what we can do...
-		*/
 		
 		if($tabs !== false && $advanced_editor == 0 && (empty($tabgroup) || isset($tabs['groups'][$tabgroup]))) {
 			
@@ -382,18 +357,10 @@
 			)
 		);
 		
-		/*
-			Fields are utterly required.
-		*/
-		
 		if(empty($label) || empty($page) || empty($tabgroup) || !in_array($position,range(1,9))) {
 			rah_tabtor_edit('rah_tabtor_required_fields');
 			return;
 		}
-		
-		/*
-			If ID, we are updating
-		*/
 		
 		if($id) {
 			
@@ -456,10 +423,6 @@
 			return;
 		}
 			
-		/*
-			Hey, TXP we have new temp tab.
-		*/
-			
 		register_tab($tabgroup,$page,gTxt($label));
 		rah_tabtor_list('rah_tabtor_saved');
 	}
@@ -506,10 +469,10 @@
 		
 		$message = $message ? gTxt($message) : '';
 		
-		pagetop(gTxt($pagetop),$message);
+		pagetop(gTxt($pagetop), $message);
 		
 		if(is_array($out))
-			$out = implode('',$out);
+			$out = implode('', $out);
 		
 		echo 
 			n.
@@ -629,11 +592,6 @@ EOF;
  */
 
 	function rah_tabtor_events() {
-	
-		/*
-			Someone called us before areas() was defined.
-			Fallback to the advanced editor.
-		*/
 		
 		if(!function_exists('areas') || !is_array(areas()))
 			return false;
@@ -645,11 +603,6 @@ EOF;
 			foreach ($group as $title => $name) 
 				$out['events'][$name] = $title;
 		}
-		
-		/*
-			These events are all over the place.
-			Let's do some cleaning.
-		*/
 		
 		$out['events'] = array_unique($out['events']);
 		asort($out['events']);
