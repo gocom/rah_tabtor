@@ -1,0 +1,39 @@
+h1. rah_tabtor
+
+p. Makes it possible to move backend's navigation links and tabs around. With the "Textpattern":http://www.textpattern.com plugin, rah_tabtor, you can copy backend's navigation links from one tab to another. Let's say that a plugin generates it's interface under _Extensions_ tab, but you would want it to appear under _Content_. With rah_tabtor that is possible.
+
+* Version: 0.1
+* Updated: 2010/10/19 6:00 PM UTC
+
+h3. Table of Contents
+
+* "Intro and description":#intro-and-description
+* "List of features":#list-of-features
+* "Requirements":#requirements
+* "Installation and usage":#installation-and-usage
+* "Changelog":#changelog
+
+h3(#intro-and-description). Intro and description
+
+p. Rah_tabtor let's you to copy backend's navigation links from tab to tab. The plugin doesn't let you hide or remove tabs, but rah_tabtor's solely purpose is cooking copy pasta. If you want to change permissions and hide tabs based on privilege levels, I suggest checking out redbot's "bot_privs":http://forum.textpattern.com/viewtopic.php?id=28148. The two play well together.
+
+h3(#list-of-features). List of features
+
+* Copy backend's navigation links from one tab to another.
+* Clean interface under _Extensions/Tabtor_.
+* Let's you freely deside the navigation link labels, and supports TXP's language strings.
+* Doesn't interfere with other plugins or core; uses TXP's standard tab registering features.
+
+h3(#requirements). Requirements
+
+* Textpattern 4.0.7+
+
+h3(#installation-and-usage). Installation and usage
+
+p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use the functionalities. You can find rah_tabtor's preferences pane under _Extensions/Tabtor_.
+
+h3(#changelog). Changelog
+
+*Version 0.1*
+
+* Initial release.
