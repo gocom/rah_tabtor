@@ -32,6 +32,8 @@
 
 	function rah_tabtor_install($event='', $step='') {
 		
+		global $prefs;
+		
 		if($step == 'deleted') {
 			
 			@safe_query(
@@ -45,44 +47,6 @@
 			
 			return;
 		}
-		
-		global $textarray, $prefs;
-		
-		/*
-			Make sure language strings are set
-		*/
-		
-		foreach(
-			array(
-				'title' => 'Tabtor',
-				'main' => 'Main',
-				'create_new' => 'Create a new rule',
-				'documentation' => 'Documentation',
-				'id' => '#ID',
-				'label' => 'Label',
-				'posted' => 'Updated',
-				'page' => 'Event',
-				'group' => 'Group',
-				'nothing_to_show' => 'Nothing to show yet. {link}.',
-				'start_by_link' => 'Start by creating your first rule',
-				'with_selected' => 'With selected...',
-				'select' => 'Select...',
-				'delete' => 'Delete',
-				'position' => 'Position',
-				'save' => 'Save',
-				'unknown_item' => 'Unknown item.',
-				'required_fields' => 'All fields are required.',
-				'updated' => 'Item updated.',
-				'saved' => 'Item saved.',
-				'removed' => 'Selected items removed.',
-				'error_saving' => 'Database error occured while saving. Please try again.',
-				'error_deleting' => 'Database error occured while removing items. Please try again.',
-				'select_something' => 'Nothing selected',
-				'already_exists' => 'Identical rule already exists.',
-			) as $string => $translation
-		)
-			if(!isset($textarray['rah_tabtor_'.$string]))
-				$textarray['rah_tabtor_'.$string] = $translation;
 		
 		$version = '0.3';
 		

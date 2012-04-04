@@ -1,0 +1,27 @@
+#@admin
+#Default language, en-us, en-gb
+rah_tabtor_title => Tabtor
+rah_tabtor_main => Main
+rah_tabtor_create_new => Create a new rule
+rah_tabtor_documentation => Documentation
+rah_tabtor_id => #ID
+rah_tabtor_label => Label
+rah_tabtor_posted => Updated
+rah_tabtor_page => Event
+rah_tabtor_group => Group
+rah_tabtor_nothing_to_show => Nothing to show yet. {link}.
+rah_tabtor_start_by_link => Start by creating your first rule
+rah_tabtor_with_selected => With selected...
+rah_tabtor_select => Select...
+rah_tabtor_delete => Delete
+rah_tabtor_position => Position
+rah_tabtor_save => Save
+rah_tabtor_unknown_item => Unknown item.
+rah_tabtor_required_fields => All fields are required.
+rah_tabtor_updated => Item updated.
+rah_tabtor_saved => Item saved.
+rah_tabtor_removed => Selected items removed.
+rah_tabtor_error_saving => Database error occured while saving. Please try again.
+rah_tabtor_error_deleting => Database error occured while removing items. Please try again.
+rah_tabtor_select_something => Nothing selected
+rah_tabtor_already_exists => Identical rule already exists.
