@@ -1,15 +1,17 @@
-<?php	##################
-	#
-	#	rah_tabtor-plugin for Textpattern
-	#	version 0.3
-	#	by Jukka Svahn
-	#	http://rahforum.biz
-	#
-	#	Copyright (C) 2011 Jukka Svahn <http://rahforum.biz>
-	#	Licensed under GNU Genral Public License version 2
-	#	http://www.gnu.org/licenses/gpl-2.0.html
-	#
-	###################
+<?php
+
+/**
+ * Rah_tabtor plugin for Textpattern CMS.
+ *
+ * @author Jukka Svahn
+ * @date 2011-
+ * @license GNU GPLv2
+ * @link http://rahforum.biz/plugins/rah_tabtor
+ * 
+ * Copyright (C) 2011 Jukka Svahn <http://rahforum.biz>
+ * Licensed under GNU Genral Public License version 2
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 	if(@txpinterface == 'admin') {
 		add_privs('rah_tabtor','1,2');
@@ -23,12 +25,12 @@
 	}
 
 /**
-	Does installing and uninstalling.
-	@param $event string The admin-side event.
-	@param $step string The admin-side / plugin-lifecycle step.
-*/
+ * Does installing and uninstalling.
+ * @param string $event The admin-side event.
+ * @param string $step The admin-side / plugin-lifecycle step.
+ */
 
-	function rah_tabtor_install($event='',$step='') {
+	function rah_tabtor_install($event='', $step='') {
 		
 		if($step == 'deleted') {
 			
@@ -131,8 +133,8 @@
 	}
 
 /**
-	Registers the tabs
-*/
+ * Registers the tabs
+ */
 
 	function rah_tabtor_register() {
 		
@@ -151,8 +153,8 @@
 	}
 
 /**
-	Delivers panes
-*/
+ * Delivers panes
+ */
 
 	function rah_tabtor() {
 		require_privs('rah_tabtor');
@@ -175,9 +177,9 @@
 	}
 
 /**
-	The main pane
-	@param $message string The message shown in the page header.
-*/
+ * The main pane
+ * @param string $message The message shown in the page header.
+ */
 
 	function rah_tabtor_list($message='') {
 		
@@ -247,9 +249,9 @@
 	}
 
 /**
-	The editor pane
-	@param $message string The message shown in the page header.
-*/
+ * The editor pane
+ * @param string $message The message shown in the page header.
+ */
 
 	function rah_tabtor_edit($message='') {
 		
@@ -397,8 +399,8 @@
 	}
 
 /**
-	Does the dirty saving work; "They call me Data".
-*/
+ * Does the saving work
+ */
 
 	function rah_tabtor_save() {
 		
@@ -499,8 +501,8 @@
 	}
 
 /**
-	Delete selected items
-*/
+ * Delete selected items
+ */
 
 	function rah_tabtor_delete() {
 		
@@ -528,11 +530,11 @@
 	}
 
 /**
-	Outputs the pane HTML markup and sets page title.
-	@param $out mixed Pane markup. Accepts arrays and strings.
-	@param $pagetop string Page title.
-	@param $message string Message shown in the header.
-*/
+ * Outputs the pane HTML markup and sets page title.
+ * @param mixed $out Pane markup. Accepts arrays and strings.
+ * @param string $pagetop Page title.
+ * @param string $message Message shown in the header.
+ */
 
 	function rah_tabtor_header($out,$pagetop,$message) {
 		
@@ -562,8 +564,8 @@
 	}
 
 /**
-	Adds styles to <head>
-*/
+ * Adds styles to <head>
+ */
 	
 	function rah_tabtor_head() {
 		global $event;
@@ -659,8 +661,8 @@ EOF;
 	}
 
 /**
-	Lists events and tab groups
-*/
+ * Lists events and tab groups
+ */
 
 	function rah_tabtor_events() {
 	
@@ -692,8 +694,8 @@ EOF;
 	}
 
 /**
-	Redirect to the admin-side interface
-*/
+ * Redirect to the admin-side interface
+ */
 
 	function rah_tabtor_prefs() {
 		header('Location: ?event=rah_tabtor');
