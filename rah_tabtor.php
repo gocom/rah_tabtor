@@ -14,13 +14,13 @@
  */
 
 	if(@txpinterface == 'admin') {
-		add_privs('rah_tabtor','1,2');
-		add_privs('plugin_prefs.rah_tabtor','1,2');
-		register_tab('extensions','rah_tabtor',gTxt('rah_tabtor') == 'rah_tabtor' ? 'Tabtor' : gTxt('rah_tabtor'));
+		add_privs('rah_tabtor', '1,2');
+		add_privs('plugin_prefs.rah_tabtor', '1,2');
+		register_tab('extensions', 'rah_tabtor', gTxt('rah_tabtor'));
 		register_callback('rah_tabtor','rah_tabtor');
-		register_callback('rah_tabtor_head','admin_side','head_end');
-		register_callback('rah_tabtor_prefs','plugin_prefs.rah_tabtor');
-		register_callback('rah_tabtor_install','plugin_lifecycle.rah_tabtor');
+		register_callback('rah_tabtor_head', 'admin_side', 'head_end');
+		register_callback('rah_tabtor_prefs', 'plugin_prefs.rah_tabtor');
+		register_callback('rah_tabtor_install', 'plugin_lifecycle.rah_tabtor');
 		rah_tabtor_register();
 	}
 
@@ -91,8 +91,8 @@
 			Add some stuff to the prefs table
 		*/
 		
-		set_pref('rah_tabtor_advanced_editor','0','rah_tabtor',2,'',0);
-		set_pref('rah_tabtor_version',$version,'rah_tabtor',2,'',0);
+		set_pref('rah_tabtor_advanced_editor', '0', 'rah_tabtor', 2, '', 0);
+		set_pref('rah_tabtor_version', $version, 'rah_tabtor', 2, '', 0);
 		$prefs['rah_tabtor_version'] = $version;
 	}
 
