@@ -503,7 +503,7 @@ class rah_tabtor {
 			<<<EOF
 			<script type="text/javascript">
 				<!--
-				function rah_tabtor_stepper() {
+				$(document).ready(function(){
 					if($('#rah_tabtor_step').length < 1)
 						return;
 					
@@ -555,10 +555,6 @@ class rah_tabtor {
 							}
 						}
 					);
-				}
-			
-				$(document).ready(function(){
-					rah_tabtor_stepper();
 				});
 				-->
 			</script>
