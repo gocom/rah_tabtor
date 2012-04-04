@@ -18,6 +18,7 @@ h2. Requirements
 p. Rah_tabtor's minimum requirements:
 
 * Textpattern 4.2.0 or newer.
+* PHP5
 
 h2. Installation and usage
 
