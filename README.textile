@@ -1,6 +1,6 @@
 h1. rah_tabtor
 
-p. Makes it possible to move backend's navigation links and tabs around. With the "Textpattern":http://www.textpattern.com plugin, rah_tabtor, you can copy backend's navigation links from one tab to another. Let's say that a plugin generates it's interface under _Extensions_ tab, but you would want it to appear under _Content_. With rah_tabtor that is possible.
+p. Makes it possible to move backend's navigation links and tabs around. With the "Textpattern":http://www.textpattern.com plugin, rah_tabtor, you can copy backend's navigation links from one tab to another. Let's say that a plugin generates it's interface under Extensions tab, but you would want it to appear under Content. With rah_tabtor that is possible.
 
 h2. Intro and description
 
