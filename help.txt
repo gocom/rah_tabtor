@@ -2,8 +2,8 @@ h1. rah_tabtor
 
 p. Makes it possible to move backend's navigation links and tabs around. With the "Textpattern":http://www.textpattern.com plugin, rah_tabtor, you can copy backend's navigation links from one tab to another. Let's say that a plugin generates it's interface under _Extensions_ tab, but you would want it to appear under _Content_. With rah_tabtor that is possible.
 
-* Version: 0.1
-* Updated: 2010/10/19 6:00 PM UTC
+* Version: 0.2
+* Updated: 2011/06/06 9:45 PM UTC
 
 h3. Table of Contents
 
@@ -21,18 +21,38 @@ h3(#list-of-features). List of features
 
 * Copy backend's navigation links from one tab to another.
 * Clean interface under _Extensions/Tabtor_.
-* Let's you freely deside the navigation link labels, and supports TXP's language strings.
+* Let's you freely decide the navigation link labels, and supports TXP's language strings.
 * Doesn't interfere with other plugins or core; uses TXP's standard tab registering features.
 
 h3(#requirements). Requirements
 
-* Textpattern 4.0.7+
+p. Rah_tabtor's minimum requirements:
+
+* Textpattern 4.2.0+
 
 h3(#installation-and-usage). Installation and usage
 
 p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use the functionalities. You can find rah_tabtor's preferences pane under _Extensions/Tabtor_.
 
 h3(#changelog). Changelog
+
+p. *Version 0.2*
+
+* Fix: Don't spit beans if JavaScript is disabled.
+* Added: Uninstaller sporting plugin-lifecycle callbacks. Drops plugin created preference strings and tables when plugin is deleted.
+* Added: Now admin-side interface uses language strings and is translatable using TextPacks.
+* Added: "Options" link to the Plugin pane.
+* Changed: Moved preferences from own database table to txp_prefs table. Plugin includes automated clean up script.
+* Changed: Try to run installer only if the version number doesn't match, instead of letting MySQL to decide.
+* Changed: Markup changes to the admin-side interface; @<thead>@ and @<tbody>@ containers to the tables, rah_ui selector classes to common elements for easier theming.
+* Changed: Shortened the admin-side interface step names.
+* Changed: Inform the user if deleting or updating item failed because of an database error.
+* Changed: Improved JavaScript based multie-edit script.
+* Changed: Requests sent as GET are ignored when saving details.
+* Changed: Specify charset as UTF-8 when creating new database tables.
+* Changed: Expanded the admin-side pane's permitted privileges from _Publishers_ to _Managing Editors_.
+* Removed: Plugin's own preferences pane.
+* Now requires Textpattern version 4.2.0 or newer for full feature support.
 
 *Version 0.1*
 
