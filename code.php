@@ -1,7 +1,7 @@
 <?php	##################
 	#
 	#	rah_tabtor-plugin for Textpattern
-	#	version 0.2
+	#	version 0.3
 	#	by Jukka Svahn
 	#	http://rahforum.biz
 	#
@@ -82,10 +82,13 @@
 			if(!isset($textarray['rah_tabtor_'.$string]))
 				$textarray['rah_tabtor_'.$string] = $translation;
 		
-		if(
-			isset($prefs['rah_tabtor_version']) &&
-			$prefs['rah_tabtor_version'] == '0.2'
-		)
+		$version = '0.3';
+		
+		$current = 
+			isset($prefs['rah_tabtor_version']) ?
+				$prefs['rah_tabtor_version'] : 'base';
+		
+		if($version == $current)
 			return;
 		
 		/*
@@ -113,16 +116,18 @@
 			Drop the old unused tables, used by older versions
 		*/
 		
-		@safe_query(
-			'DROP TABLE IF EXISTS '.safe_pfx('rah_tabtor_prefs')
-		);
+		if($current == 'base')
+			@safe_query(
+				'DROP TABLE IF EXISTS '.safe_pfx('rah_tabtor_prefs')
+			);
 		
 		/*
 			Add some stuff to the prefs table
 		*/
 		
 		set_pref('rah_tabtor_advanced_editor','0','rah_tabtor',2,'',0);
-		set_pref('rah_tabtor_version','0.2','rah_tabtor',2,'',0);
+		set_pref('rah_tabtor_version',$version,'rah_tabtor',2,'',0);
+		$prefs['rah_tabtor_version'] = $version;
 	}
 
 /**
@@ -153,15 +158,20 @@
 		require_privs('rah_tabtor');
 		rah_tabtor_install();
 		global $step;
-		if(!empty($step) && in_array($step,array(
-			'edit',
-			'save',
-			'delete'
-		))) {
-			$func = 'rah_tabtor_' . $step;
-			$func();
-		}
-		else rah_tabtor_list();
+		
+		$steps = 
+			array(
+				'list' => false,
+				'edit' => false,
+				'save' => true,
+				'delete' => true
+			);
+		
+		if(!$step || !bouncer($step, $steps))
+			$step = 'list';
+		
+		$func = 'rah_tabtor_' . $step;
+		$func();
 	}
 
 /**
@@ -539,6 +549,7 @@
 			n.
 			'<form method="post" action="index.php" id="rah_tabtor_container" class="rah_ui_container">'.n.
 			'	<input type="hidden" name="event" value="'.$event.'" />'.n.
+			'	<input type="hidden" name="_txp_token" value="'.form_token().'" />'.n.
 			'	<p class="rah_ui_nav">'.
 				'<span class="rah_ui_sep">&#187;</span> <a href="?event='.$event.'">'.gTxt('rah_tabtor_main').'</a> '.
 				'<span class="rah_ui_sep">&#187;</span> <strong><a href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_create_new').'</a></strong> '.
