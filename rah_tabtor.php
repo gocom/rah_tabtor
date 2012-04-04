@@ -42,7 +42,7 @@
 			
 			safe_delete(
 				'txp_prefs',
-				"name like 'rah_tabtor_%'"
+				"name like 'rah\_tabtor\_%'"
 			);
 			
 			return;
