@@ -203,7 +203,7 @@ class rah_tabtor {
 			'		<input type="submit" class="smallerbox" value="'.gTxt('go').'" />'.n.
 			'	</p>'.n;
 		
-		$this->pane($out, 'rah_tabtor_title', $message);
+		$this->pane($out, 'rah_tabtor', $message);
 	}
 
 	/**
@@ -335,7 +335,7 @@ class rah_tabtor {
 			'	</p>'.n
 		;
 		
-		$this->pane($out,'rah_tabtor_title',$message);
+		$this->pane($out,'rah_tabtor',$message);
 	}
 
 	/**
