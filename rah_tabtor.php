@@ -4,7 +4,7 @@
  * Rah_tabtor plugin for Textpattern CMS.
  *
  * @author Jukka Svahn
- * @date 2011-
+ * @date 2010-
  * @license GNU GPLv2
  * @link http://rahforum.biz/plugins/rah_tabtor
  * 
