@@ -556,7 +556,7 @@ class rah_tabtor {
 						}
 					);
 				});
-				-->
+				//-->
 			</script>
 			<style type="text/css">
 				#rah_tabtor_container {
