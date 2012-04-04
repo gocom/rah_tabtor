@@ -437,13 +437,10 @@ class rah_tabtor {
 			return;
 		}
 		
-		foreach($selected as $id)
-			$ids[] = "'".doSlash($id)."'";
-		
 		if(
 			safe_delete(
 				'rah_tabtor',
-				'id in('.implode(',',$ids).')'
+				'id in('.implode(',', quote_list($ids)).')'
 			) == false
 		) {
 			$this->browse('rah_tabtor_error_deleting');
