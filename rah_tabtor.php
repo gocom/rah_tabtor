@@ -17,20 +17,24 @@
 		add_privs('rah_tabtor', '1,2');
 		add_privs('plugin_prefs.rah_tabtor', '1,2');
 		register_tab('extensions', 'rah_tabtor', gTxt('rah_tabtor'));
-		register_callback('rah_tabtor','rah_tabtor');
-		register_callback('rah_tabtor_head', 'admin_side', 'head_end');
-		register_callback('rah_tabtor_prefs', 'plugin_prefs.rah_tabtor');
-		register_callback('rah_tabtor_install', 'plugin_lifecycle.rah_tabtor');
-		rah_tabtor_register();
+		register_callback(array('rah_tabtor', 'panes'),'rah_tabtor');
+		register_callback(array('rah_tabtor', 'head'), 'admin_side', 'head_end');
+		register_callback(array('rah_tabtor', 'prefs'), 'plugin_prefs.rah_tabtor');
+		register_callback(array('rah_tabtor', 'install'), 'plugin_lifecycle.rah_tabtor');
+		rah_tabtor::register();
 	}
 
-/**
- * Does installing and uninstalling.
- * @param string $event The admin-side event.
- * @param string $step The admin-side / plugin-lifecycle step.
- */
+class rah_tabtor {
 
-	function rah_tabtor_install($event='', $step='') {
+	static public $version = '0.2';
+
+	/**
+	 * Does installing and uninstalling.
+	 * @param string $event The admin-side event.
+	 * @param string $step The admin-side / plugin-lifecycle step.
+	 */
+
+	static public function install($event='', $step='') {
 		
 		global $prefs;
 		
@@ -48,13 +52,11 @@
 			return;
 		}
 		
-		$version = '0.3';
-		
 		$current = 
 			isset($prefs['rah_tabtor_version']) ?
 				$prefs['rah_tabtor_version'] : 'base';
 		
-		if($version == $current)
+		if(self::$version == $current)
 			return;
 		
 		/*
@@ -84,16 +86,16 @@
 			);
 		}
 		
-		set_pref('rah_tabtor_advanced_editor', '0', 'rah_tabtor', 2, '', 0);
-		set_pref('rah_tabtor_version', $version, 'rah_tabtor', 2, '', 0);
-		$prefs['rah_tabtor_version'] = $version;
+		set_pref('rah_tabtor_advanced_editor', 0, 'rah_tabtor', 2, '', 0);
+		set_pref('rah_tabtor_version', self::$version, 'rah_tabtor', 2, '', 0);
+		$prefs['rah_tabtor_version'] = self::$version;
 	}
 
-/**
- * Registers the tabs
- */
+	/**
+	 * Registers the tabs
+	 */
 
-	function rah_tabtor_register() {
+	static public function register() {
 		
 		@$rs = 
 			safe_rows(
@@ -109,36 +111,36 @@
 			register_tab($a['tabgroup'],$a['page'],gTxt($a['label']));
 	}
 
-/**
- * Delivers panes
- */
+	/**
+	 * Delivers panes
+	 */
 
-	function rah_tabtor() {
+	static public function panes() {
 		require_privs('rah_tabtor');
-		rah_tabtor_install();
+		self::install();
 		global $step;
 		
 		$steps = 
 			array(
-				'list' => false,
+				'browse' => false,
 				'edit' => false,
 				'save' => true,
 				'delete' => true
 			);
 		
 		if(!$step || !bouncer($step, $steps))
-			$step = 'list';
+			$step = 'browse';
 		
-		$func = 'rah_tabtor_' . $step;
-		$func();
+		$panes = new rah_tabtor();
+		$panes->$step();
 	}
 
-/**
- * The main pane
- * @param string $message The message shown in the page header.
- */
+	/**
+	 * The main pane
+	 * @param string $message The message shown in the page header.
+	 */
 
-	function rah_tabtor_list($message='') {
+	public function browse($message='') {
 		
 		global $event;
 		
@@ -201,16 +203,15 @@
 			'		<input type="submit" class="smallerbox" value="'.gTxt('go').'" />'.n.
 			'	</p>'.n;
 		
-		rah_tabtor_header($out,'rah_tabtor_title',$message);
-		
+		$this->pane($out, 'rah_tabtor_title', $message);
 	}
 
-/**
- * The editor pane
- * @param string $message The message shown in the page header.
- */
+	/**
+	 * The editor pane
+	 * @param string $message The message shown in the page header.
+	 */
 
-	function rah_tabtor_edit($message='') {
+	public function edit($message='') {
 		
 		global $prefs;
 		
@@ -235,7 +236,7 @@
 				);
 			
 			if(!$rs) {
-				rah_tabtor_list('rah_tabtor_unknown_item');
+				$this->browse('rah_tabtor_unknown_item');
 				return;
 			}
 			
@@ -244,7 +245,7 @@
 		}
 		
 		$advanced_editor = $prefs['rah_tabtor_advanced_editor'];
-		$tabs = rah_tabtor_events();
+		$tabs = $this->get_events();
 		
 		$out[] = 
 		
@@ -334,14 +335,14 @@
 			'	</p>'.n
 		;
 		
-		rah_tabtor_header($out,'rah_tabtor_title',$message);
+		$this->pane($out,'rah_tabtor_title',$message);
 	}
 
-/**
- * Does the saving work
- */
+	/**
+	 * Does the saving work
+	 */
 
-	function rah_tabtor_save() {
+	public function save() {
 		
 		extract(
 			doSlash(
@@ -358,7 +359,7 @@
 		);
 		
 		if(empty($label) || empty($page) || empty($tabgroup) || !in_array($position,range(1,9))) {
-			rah_tabtor_edit('rah_tabtor_required_fields');
+			$this->edit('rah_tabtor_required_fields');
 			return;
 		}
 		
@@ -371,7 +372,7 @@
 					"id='$id' LIMIT 0, 1"
 				)
 			) {
-				rah_tabtor_list('rah_tabtor_unknown_item');
+				$this->browse('rah_tabtor_unknown_item');
 				return;
 			}
 			
@@ -385,17 +386,13 @@
 					"id='$id'"
 				) == false
 			) {
-				rah_tabtor_edit('rah_tabtor_error_saving');
+				$this->edit('rah_tabtor_error_saving');
 				return;
 			}
 			
-			rah_tabtor_edit('rah_tabtor_updated');
+			$this->edit('rah_tabtor_updated');
 			return;
 		}
-		
-		/*
-			We are adding
-		*/
 		
 		if(
 			safe_count(
@@ -406,7 +403,7 @@
 				position='$position'"
 			) > 0
 		) {
-			rah_tabtor_list('rah_tabtor_already_exists');
+			$this->browse('rah_tabtor_already_exists');
 			return;	
 		}
 		
@@ -419,24 +416,24 @@
 				position='$position'"
 			) == false
 		) {
-			rah_tabtor_edit('rah_tabtor_error_saving');
+			$this->edit('rah_tabtor_error_saving');
 			return;
 		}
 			
 		register_tab($tabgroup,$page,gTxt($label));
-		rah_tabtor_list('rah_tabtor_saved');
+		$this->browse('rah_tabtor_saved');
 	}
 
-/**
- * Delete selected items
- */
+	/**
+	 * Delete selected items
+	 */
 
-	function rah_tabtor_delete() {
+	public function delete() {
 		
 		$selected = ps('selected');
 		
 		if(!is_array($selected) || empty($selected)) {
-			rah_tabtor_list('rah_tabtor_select_something');
+			$this->browse('rah_tabtor_select_something');
 			return;
 		}
 		
@@ -449,21 +446,21 @@
 				'id in('.implode(',',$ids).')'
 			) == false
 		) {
-			rah_tabtor_list('rah_tabtor_error_deleting');
+			$this->browse('rah_tabtor_error_deleting');
 			return;	
 		}
 		
-		rah_tabtor_list('rah_tabtor_removed');
+		$this->browse('rah_tabtor_removed');
 	}
 
-/**
- * Outputs the pane HTML markup and sets page title.
- * @param mixed $out Pane markup. Accepts arrays and strings.
- * @param string $pagetop Page title.
- * @param string $message Message shown in the header.
- */
+	/**
+	 * Outputs the pane HTML markup and sets page title.
+	 * @param mixed $out Pane markup. Accepts arrays and strings.
+	 * @param string $pagetop Page title.
+	 * @param string $message Message shown in the header.
+	 */
 
-	function rah_tabtor_header($out,$pagetop,$message) {
+	private function pane($out, $pagetop, $message) {
 		
 		global $event;
 		
@@ -490,11 +487,11 @@
 			'</form>'.n;
 	}
 
-/**
- * Adds styles to <head>
- */
+	/**
+	 * Adds styles and JavaScript to the <head>
+	 */
 	
-	function rah_tabtor_head() {
+	static public function head() {
 		global $event;
 		
 		if($event != 'rah_tabtor')
@@ -587,11 +584,11 @@
 EOF;
 	}
 
-/**
- * Lists events and tab groups
- */
+	/**
+	 * Lists events and tab groups
+	 */
 
-	function rah_tabtor_events() {
+	private function get_events() {
 		
 		if(!function_exists('areas') || !is_array(areas()))
 			return false;
@@ -610,16 +607,17 @@ EOF;
 		return $out;
 	}
 
-/**
- * Redirect to the admin-side interface
- */
+	/**
+	 * Redirect to the admin-side interface
+	 */
 
-	function rah_tabtor_prefs() {
+	static public function prefs() {
 		header('Location: ?event=rah_tabtor');
 		echo 
 			'<p>'.n.
 			'	<a href="?event=rah_tabtor">'.gTxt('continue').'</a>'.n.
 			'</p>';
 	}
+}
 
 ?>
