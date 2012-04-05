@@ -335,7 +335,7 @@ class rah_tabtor {
 			'	</p>'.n
 		;
 		
-		$this->pane($out,'rah_tabtor',$message);
+		$this->pane($out, 'rah_tabtor', $message);
 	}
 
 	/**
@@ -359,7 +359,7 @@ class rah_tabtor {
 		);
 		
 		if(empty($label) || empty($page) || empty($tabgroup) || !in_array($position,range(1,9))) {
-			$this->edit('rah_tabtor_required_fields');
+			$this->edit(array(gTxt('rah_tabtor_required_fields'), E_ERROR));
 			return;
 		}
 		
@@ -372,7 +372,7 @@ class rah_tabtor {
 					"id='$id' LIMIT 0, 1"
 				)
 			) {
-				$this->browse('rah_tabtor_unknown_item');
+				$this->browse(array(gTxt('rah_tabtor_unknown_item'), E_ERROR));
 				return;
 			}
 			
@@ -386,11 +386,11 @@ class rah_tabtor {
 					"id='$id'"
 				) == false
 			) {
-				$this->edit('rah_tabtor_error_saving');
+				$this->edit(array(gTxt('rah_tabtor_error_saving'), E_ERROR));
 				return;
 			}
 			
-			$this->edit('rah_tabtor_updated');
+			$this->edit(gTxt('rah_tabtor_updated'));
 			return;
 		}
 		
@@ -403,8 +403,8 @@ class rah_tabtor {
 				position='$position'"
 			) > 0
 		) {
-			$this->browse('rah_tabtor_already_exists');
-			return;	
+			$this->browse(array(gTxt('rah_tabtor_already_exists'), E_WARNING));
+			return;
 		}
 		
 		if(
@@ -416,12 +416,12 @@ class rah_tabtor {
 				position='$position'"
 			) == false
 		) {
-			$this->edit('rah_tabtor_error_saving');
+			$this->edit(array(gTxt('rah_tabtor_error_saving'), E_ERROR));
 			return;
 		}
-			
-		register_tab($tabgroup,$page,gTxt($label));
-		$this->browse('rah_tabtor_saved');
+		
+		register_tab($tabgroup, $page, gTxt($label));
+		$this->browse(gTxt('rah_tabtor_saved'));
 	}
 
 	/**
@@ -433,7 +433,7 @@ class rah_tabtor {
 		$selected = ps('selected');
 		
 		if(!is_array($selected) || empty($selected)) {
-			$this->browse('rah_tabtor_select_something');
+			$this->browse(array(gTxt('rah_tabtor_select_something'), E_WARNING));
 			return;
 		}
 		
@@ -443,11 +443,11 @@ class rah_tabtor {
 				'id in('.implode(',', quote_list($ids)).')'
 			) == false
 		) {
-			$this->browse('rah_tabtor_error_deleting');
+			$this->browse(array(gTxt('rah_tabtor_error_deleting'), E_ERROR));
 			return;	
 		}
 		
-		$this->browse('rah_tabtor_removed');
+		$this->browse(gTxt('rah_tabtor_removed'));
 	}
 
 	/**
@@ -461,8 +461,7 @@ class rah_tabtor {
 		
 		global $event;
 		
-		$message = $message ? gTxt($message) : '';
-		
+		//$message = $message ? gTxt($message) : '';
 		pagetop(gTxt($pagetop), $message);
 		
 		if(is_array($out))
