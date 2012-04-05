@@ -182,10 +182,11 @@ class rah_tabtor {
 				'			<tr>'.n.
 				'				<td colspan="5">'.
 				
-				str_replace(
-					'{link}',
-					'<a href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_start_by_link').'</a>',
-					gTxt('rah_tabtor_nothing_to_show')
+				gTxt(
+					'rah_tabtor_nothing_to_show',
+					array(
+						'{link}' => '<a href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_start_by_link').'</a>'
+					), false
 				).
 				
 				'</td>'.n.
