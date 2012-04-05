@@ -441,7 +441,7 @@ class rah_tabtor {
 		if(
 			safe_delete(
 				'rah_tabtor',
-				'id in('.implode(',', quote_list($ids)).')'
+				'id in('.implode(',', quote_list($selected)).')'
 			) == false
 		) {
 			$this->browse(array(gTxt('rah_tabtor_error_deleting'), E_ERROR));
