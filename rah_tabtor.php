@@ -471,8 +471,8 @@ class rah_tabtor {
 		echo 
 			n.
 			'<form method="post" action="index.php" id="rah_tabtor_container" class="rah_ui_container txp-container">'.n.
-			'	<input type="hidden" name="event" value="'.$event.'" />'.n.
-			'	<input type="hidden" name="_txp_token" value="'.form_token().'" />'.n.
+			tInput().
+			eInput($event).
 			'	<p class="rah_ui_nav">'.
 				'<span class="rah_ui_sep">&#187;</span> <a href="?event='.$event.'">'.gTxt('rah_tabtor_main').'</a> '.
 				'<span class="rah_ui_sep">&#187;</span> <strong><a href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_create_new').'</a></strong> '.
