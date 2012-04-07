@@ -72,9 +72,9 @@ class rah_tabtor {
 		safe_query(
 			"CREATE TABLE IF NOT EXISTS ".safe_pfx('rah_tabtor')." (
 				`id` INT(11) NOT NULL auto_increment,
-				`tabgroup` VARCHAR(255) NOT NULL,
-				`page` VARCHAR(255) NOT NULL,
-				`label` VARCHAR(255) NOT NULL,
+				`tabgroup` VARCHAR(255) NOT NULL default '',
+				`page` VARCHAR(255) NOT NULL default '',
+				`label` VARCHAR(255) NOT NULL default '',
 				`position` INT(2) NOT NULL default 1,
 				PRIMARY KEY(`id`)
 			) PACK_KEYS=1 AUTO_INCREMENT=1 CHARSET=utf8"
