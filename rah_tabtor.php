@@ -268,7 +268,7 @@ class rah_tabtor {
 			
 			$out[] =
 		
-				'			<select name="page" class="rah_tabtor_select">'.n.
+				'			<select name="page">'.n.
 				'				<option value="">'.gTxt('rah_tabtor_select').'</option>'.n;
 			
 			foreach($tabs['events'] as $key => $val)
@@ -295,7 +295,7 @@ class rah_tabtor {
 		if($tabs !== false && $advanced_editor == 0 && (empty($tabgroup) || isset($tabs['groups'][$tabgroup]))) {
 			
 			$out[] =
-				'			<select name="tabgroup" class="rah_tabtor_select">'.n.
+				'			<select name="tabgroup">'.n.
 				'				<option value="">'.gTxt('rah_tabtor_select').'</option>'.n;
 		
 			foreach($tabs['groups'] as $key => $val) 
@@ -320,7 +320,7 @@ class rah_tabtor {
 			'	<p>'.n.
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_position').'<br />'.n.
-			'			<select name="position" class="rah_tabtor_select">'.n;
+			'			<select name="position">'.n;
 		
 		for($i=1;$i<10;$i++)
 			$out[] = 
@@ -566,10 +566,7 @@ class rah_tabtor {
 					text-align: right;
 				}
 				#rah_tabtor_container input.edit {
-					width: 940px;
-				}
-				#rah_tabtor_container .rah_tabtor_select {
-					width: 640px;
+					width: 100%;
 				}
 			</style>
 
