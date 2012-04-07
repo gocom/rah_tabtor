@@ -470,7 +470,7 @@ class rah_tabtor {
 		
 		echo 
 			n.
-			'<form method="post" action="index.php" id="rah_tabtor_container" class="rah_ui_container">'.n.
+			'<form method="post" action="index.php" id="rah_tabtor_container" class="rah_ui_container txp-container">'.n.
 			'	<input type="hidden" name="event" value="'.$event.'" />'.n.
 			'	<input type="hidden" name="_txp_token" value="'.form_token().'" />'.n.
 			'	<p class="rah_ui_nav">'.
