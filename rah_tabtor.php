@@ -462,11 +462,11 @@ class rah_tabtor {
 		
 		global $event;
 		
-		//$message = $message ? gTxt($message) : '';
 		pagetop(gTxt($pagetop), $message);
 		
-		if(is_array($out))
+		if(is_array($out)) {
 			$out = implode('', $out);
+		}
 		
 		echo 
 			n.
@@ -476,7 +476,6 @@ class rah_tabtor {
 			'	<p class="rah_ui_nav">'.
 				'<span class="rah_ui_sep">&#187;</span> <a href="?event='.$event.'">'.gTxt('rah_tabtor_main').'</a> '.
 				'<span class="rah_ui_sep">&#187;</span> <strong><a href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_create_new').'</a></strong> '.
-				'<span class="rah_ui_sep">&#187;</span> <a href="?event=plugin&amp;step=plugin_help&amp;name=rah_tabtor">'.gTxt('rah_tabtor_documentation').'</a>'.
 			'</p>'.n.
 			
 			$out.n.
