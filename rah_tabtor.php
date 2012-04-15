@@ -99,16 +99,17 @@ class rah_tabtor {
 		
 		@$rs = 
 			safe_rows(
-				'tabgroup,page,label',
+				'tabgroup, page, label',
 				'rah_tabtor',
-				'1=1 order by position asc'
+				'1=1 ORDER BY position asc'
 			);
 		
 		if(!$rs) 
 			return;
 		
-		foreach($rs as $a)
-			register_tab($a['tabgroup'],$a['page'],gTxt($a['label']));
+		foreach($rs as $a) {
+			register_tab($a['tabgroup'], $a['page'], gTxt($a['label']));
+		}
 	}
 
 	/**
