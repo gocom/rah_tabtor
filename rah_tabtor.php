@@ -97,6 +97,8 @@ class rah_tabtor {
 
 	static public function register() {
 		
+		global $plugin_areas;
+		
 		@$rs = 
 			safe_rows(
 				'tabgroup, page, label',
@@ -107,7 +109,19 @@ class rah_tabtor {
 		if(!$rs) 
 			return;
 		
+		$unset = array();
+		
 		foreach($rs as $a) {
+			
+			foreach($plugin_areas as $area => $items) {
+				foreach($items as $title => $event) {
+					if($a['page'] === $event && !in_array($event, $unset)) {
+						unset($plugin_areas[$area][$title]);
+						$unset[] = $event;
+					}
+				}
+			}
+			
 			register_tab($a['tabgroup'], $a['page'], gTxt($a['label']));
 		}
 	}
