@@ -162,7 +162,7 @@ class rah_tabtor {
 			safe_rows(
 				'*',
 				'rah_tabtor',
-				'1=1'
+				'1=1 ORDER BY label asc'
 			);
 			
 		if($rs) {
