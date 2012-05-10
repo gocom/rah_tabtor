@@ -280,23 +280,13 @@ class rah_tabtor {
 			'			'.gTxt('rah_tabtor_page').'<br />'.n;
 		
 		if($tabs !== false && $advanced_editor == 0 && (empty($page) || isset($tabs['events'][$page]))) {
-			
-			$out[] =
+			$out[] = selectInput('page', $tabs['events'], $page);		
+		}
 		
-				'			<select name="page">'.n.
-				'				<option value="">'.gTxt('rah_tabtor_select').'</option>'.n;
-			
-			foreach($tabs['events'] as $key => $val)
-				$out[] = 
-					'				<option value="'.htmlspecialchars($key).'"'.(($page == $key) ? ' selected="selected"' : '').'>'.($val ? $val : $key).'</option>';
-				
-				
-			$out[] =
-				'			</select>'.n;
-		
-		} else 
+		else {
 			$out[] =
 				'			<input type="text" name="page" class="edit" value="'.htmlspecialchars($page).'" />'.n;
+		}
 		
 		$out[] =
 			
@@ -308,24 +298,13 @@ class rah_tabtor {
 			'			'.gTxt('rah_tabtor_group').'<br />'.n;
 		
 		if($tabs !== false && $advanced_editor == 0 && (empty($tabgroup) || isset($tabs['groups'][$tabgroup]))) {
-			
-			$out[] =
-				'			<select name="tabgroup">'.n.
-				'				<option value="">'.gTxt('rah_tabtor_select').'</option>'.n;
+			$out[] = selectInput('tabgroup', $tabs['groups'], $tabgroup);
+		}
 		
-			foreach($tabs['groups'] as $key => $val) 
-				
-				$out[] = 
-					'				<option value="'.$key.'"'.($tabgroup == $key ? ' selected="selected"' : '').'>'.($val ? $val : $key).'</option>';
-			
-			
-			$out[] = 
-				
-				'			</select>'.n;
-			
-		} else 
+		else {
 			$out[] =
 				'			<input type="text" name="tabgroup" class="edit" value="'.htmlspecialchars($tabgroup).'" />'.n;
+		}
 		
 		$out[] =
 			
@@ -335,14 +314,9 @@ class rah_tabtor {
 			'	<p>'.n.
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_position').'<br />'.n.
-			'			<select name="position">'.n;
-		
-		for($i=1;$i<10;$i++)
-			$out[] = 
-				'				<option value="'.$i.'"'.($position == $i ? ' selected="selected"' : '').'>'.$i.'</option>';
+			selectInput('position', array_combine(range(1, 9), range(1, 9)), (int) $position);
 		
 		$out[] =
-			'			</select>'.n.
 			'		</label>'.n.
 			'	</p>'.n.
 			
