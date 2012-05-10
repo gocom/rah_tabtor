@@ -265,8 +265,8 @@ class rah_tabtor {
 		
 		$out[] = 
 		
-			'	<input type="hidden" name="step" value="save" />'.n.
-			($id ? '	<input type="hidden" name="id" value="'.$id.'" />'.n : '').
+			sInput('save').
+			hInput('id', $id).
 			
 			'	<p>'.n.
 			'		<label>'.n.
