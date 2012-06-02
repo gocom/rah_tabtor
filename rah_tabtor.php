@@ -535,9 +535,6 @@ class rah_tabtor {
 				#rah_tabtor_container #rah_tabtor_step {
 					text-align: right;
 				}
-				#rah_tabtor_container input.edit {
-					width: 100%;
-				}
 			</style>
 
 EOF;
