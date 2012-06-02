@@ -216,7 +216,7 @@ class rah_tabtor {
 			'			<option value="">'.gTxt('rah_tabtor_with_selected').'</option>'.n.
 			'			<option value="delete">'.gTxt('rah_tabtor_delete').'</option>'.n.
 			'		</select>'.n.
-			'		<input type="submit" class="smallerbox" value="'.gTxt('go').'" />'.n.
+			'		<input type="submit" value="'.gTxt('go').'" />'.n.
 			'	</p>'.n;
 		
 		$this->pane($out, 'rah_tabtor', $message);
@@ -492,7 +492,7 @@ class rah_tabtor {
 					if($('#rah_tabtor_step').length < 1)
 						return;
 					
-					$('#rah_tabtor_step .smallerbox').hide();
+					$('#rah_tabtor_step input[type=submit]').hide();
 
 					if($('#rah_tabtor_container input[type=checkbox]:checked').val() == null) {
 						$('#rah_tabtor_step').hide();
