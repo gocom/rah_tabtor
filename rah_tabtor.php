@@ -489,62 +489,42 @@ class rah_tabtor {
 			<script type="text/javascript">
 				<!--
 				$(document).ready(function(){
-					if($('#rah_tabtor_step').length < 1)
+				
+					var step = $('select[name=step]').parent('p');
+					var form = step.parents('form');
+				
+					if(step.length < 1)
 						return;
 					
-					$('#rah_tabtor_step input[type=submit]').hide();
+					step.find('input[type=submit]').hide();
 
-					if($('#rah_tabtor_container input[type=checkbox]:checked').val() == null) {
-						$('#rah_tabtor_step').hide();
+					if(form.find('input[type=checkbox]:checked').val() == null) {
+						step.hide();
 					}
 
-					/*
-						Reset the value
-					*/
+					step.find('select[name=step]').val('');
 
-					$('#rah_tabtor_container select[name="step"]').val('');
-
-					/*
-						Every time something is checked, check if
-						the dropdown should be shown
-					*/
-
-					$('#rah_tabtor_container input[type=checkbox], #rah_tabtor_container td').click(
-						function(){
-							$('#rah_tabtor_container select[name="step"]').val('');
+					form.find('input[type=checkbox], td').click(function(){
+						step.find('select[name=step]').val('');
 							
-							if($(this).parents('form').find('input[type=checkbox]:checked').val() != null) {
-								$('#rah_tabtor_step').slideDown();
-							}
-							
-							else {
-								$('#rah_tabtor_step').slideUp();
-							}
+						if(form.find('input[type=checkbox]:checked').val() != null) {
+							step.slideDown();
 						}
-					);
-
-					/*
-						If value is changed, send the form
-					*/
-
-					$('#rah_tabtor_container select[name="step"]').change(
-						function(){
-							$('#rah_tabtor_container').submit();
+						else {
+							step.slideUp();
 						}
-					);
+					});
 
-					/*
-						Verify if the sent is allowed
-					*/
+					step.find('select[name="step"]').change(function(){
+						form.submit();
+					});
 
-					$('form#rah_tabtor_container').submit(
-						function() {
-							if(!verify('{$msg}')) {
-								$('#rah_tabtor_container select[name="step"]').val('');
-								return false;
-							}
+					form.submit(function() {
+						if(!verify('{$msg}')) {
+							step.find('select[name=step]').val('');
+							return false;
 						}
-					);
+					});
 				});
 				//-->
 			</script>
