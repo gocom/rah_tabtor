@@ -161,7 +161,7 @@ class rah_tabtor {
 		
 		$out[] = 
 			
-			'	<table cellspacing="0" cellpadding="0" id="list">'.n.
+			'	<table class="txp-list">'.n.
 			'		<thead>'.n.
 			'			<tr>'.n.
 			'				<th>'.gTxt('rah_tabtor_id').'</th>'.n.
@@ -494,8 +494,9 @@ class rah_tabtor {
 					
 					$('#rah_tabtor_step .smallerbox').hide();
 
-					if($('#rah_tabtor_container input[type=checkbox]:checked').val() == null)
+					if($('#rah_tabtor_container input[type=checkbox]:checked').val() == null) {
 						$('#rah_tabtor_step').hide();
+					}
 
 					/*
 						Reset the value
@@ -511,10 +512,14 @@ class rah_tabtor {
 					$('#rah_tabtor_container input[type=checkbox], #rah_tabtor_container td').click(
 						function(){
 							$('#rah_tabtor_container select[name="step"]').val('');
-							if($('table#list input[type=checkbox]:checked').val() != null)	
+							
+							if($(this).parents('form').find('input[type=checkbox]:checked').val() != null) {
 								$('#rah_tabtor_step').slideDown();
-							else
+							}
+							
+							else {
 								$('#rah_tabtor_step').slideUp();
+							}
 						}
 					);
 
