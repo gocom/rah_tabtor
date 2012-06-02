@@ -462,9 +462,9 @@ class rah_tabtor {
 			'<form method="post" action="index.php" id="rah_tabtor_container" class="txp-container">'.n.
 			tInput().
 			eInput($event).
-			'	<p class="rah_ui_nav">'.
-				'<span class="rah_ui_sep">&#187;</span> <a href="?event='.$event.'">'.gTxt('rah_tabtor_main').'</a> '.
-				'<span class="rah_ui_sep">&#187;</span> <strong><a href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_create_new').'</a></strong> '.
+			'	<p class="nav-tertiary">'.
+				'<a class="navlink" href="?event='.$event.'">'.gTxt('rah_tabtor_main').'</a>'.
+				'<a class="navlink" href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_create_new').'</a>'.
 			'</p>'.n.
 			
 			$out.n.
