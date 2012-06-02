@@ -271,7 +271,7 @@ class rah_tabtor {
 			'	<p>'.n.
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_label').'<br />'.n.
-			'			<input class="edit" type="text" name="label" value="'.htmlspecialchars($label).'" />'.n.
+			'			<input type="text" name="label" value="'.htmlspecialchars($label).'" />'.n.
 			'		</label>'.n.
 			'	</p>'.n.
 			
@@ -285,7 +285,7 @@ class rah_tabtor {
 		
 		else {
 			$out[] =
-				'			<input type="text" name="page" class="edit" value="'.htmlspecialchars($page).'" />'.n;
+				'			<input type="text" name="page" value="'.htmlspecialchars($page).'" />'.n;
 		}
 		
 		$out[] =
@@ -303,7 +303,7 @@ class rah_tabtor {
 		
 		else {
 			$out[] =
-				'			<input type="text" name="tabgroup" class="edit" value="'.htmlspecialchars($tabgroup).'" />'.n;
+				'			<input type="text" name="tabgroup" value="'.htmlspecialchars($tabgroup).'" />'.n;
 		}
 		
 		$out[] =
