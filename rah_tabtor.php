@@ -529,10 +529,6 @@ class rah_tabtor {
 				//-->
 			</script>
 			<style type="text/css">
-				#rah_tabtor_container {
-					width: 950px;
-					margin: 0 auto;
-				}
 				#rah_tabtor_container table {
 					width: 100%;
 				}
