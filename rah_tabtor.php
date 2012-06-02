@@ -459,7 +459,7 @@ class rah_tabtor {
 		
 		echo 
 			n.
-			'<form method="post" action="index.php" id="rah_tabtor_container" class="rah_ui_container txp-container">'.n.
+			'<form method="post" action="index.php" id="rah_tabtor_container" class="txp-container">'.n.
 			tInput().
 			eInput($event).
 			'	<p class="rah_ui_nav">'.
