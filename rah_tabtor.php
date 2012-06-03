@@ -528,9 +528,6 @@ class rah_tabtor {
 				//-->
 			</script>
 			<style type="text/css">
-				#rah_tabtor_container table {
-					width: 100%;
-				}
 				#rah_tabtor_container #rah_tabtor_step {
 					text-align: right;
 				}
