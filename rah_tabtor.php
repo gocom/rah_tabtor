@@ -484,8 +484,7 @@ class rah_tabtor {
 			
 		gTxtScript('are_you_sure');
 		
-		echo 
-			<<<EOF
+		echo <<<EOF
 			<script type="text/javascript">
 				<!--
 				$(document).ready(function(){
