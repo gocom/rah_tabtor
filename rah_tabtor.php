@@ -482,14 +482,13 @@ class rah_tabtor {
 		if($event != 'rah_tabtor')
 			return;
 			
-		$msg = gTxt('are_you_sure');
+		gTxtScript('are_you_sure');
 		
 		echo 
 			<<<EOF
 			<script type="text/javascript">
 				<!--
 				$(document).ready(function(){
-				
 					var step = $('select[name=step]').parent('p');
 					var form = step.parents('form');
 				
@@ -520,7 +519,7 @@ class rah_tabtor {
 					});
 
 					form.submit(function() {
-						if(!verify('{$msg}')) {
+						if(!verify(textpattern.gTxt('are_you_sure'))) {
 							step.find('select[name=step]').val('');
 							return false;
 						}
