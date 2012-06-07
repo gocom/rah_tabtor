@@ -17,7 +17,7 @@ h2. Requirements
 
 p. Rah_tabtor's minimum requirements:
 
-* Textpattern v4.2.0 or newer.
+* Textpattern v4.5.0 or newer.
 * PHP5 or newer
 
 h2. Installation and usage
@@ -41,7 +41,7 @@ h3. Version 0.3 - upcoming
 * Changed: Plugin now uses PHP5-level OOP.
 * Changed: JavaScript improvements.
 * Changed: Use gTxt()'s own replacement tag support.
-* Now requires PHP5 or newer.
+* Now requires PHP5 or newer, and Textpattern v4.5.0 or newer.
 
 h3. Version 0.2 - 2011/06/06
 
