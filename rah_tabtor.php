@@ -328,13 +328,13 @@ class rah_tabtor {
 
 	public function save() {
 		
-		extract(doSlash(psa(array(
+		extract(doSlash(doArray(psa(array(
 			'label',
 			'page',
 			'tabgroup',
 			'id',
 			'position'
-		))));
+		)), 'trim')));
 		
 		if(!$label || !$page || !$tabgroup || !in_array($position, range(1, 9))) {
 			$this->edit(array(gTxt('rah_tabtor_required_fields'), E_ERROR));
