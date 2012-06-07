@@ -164,7 +164,6 @@ class rah_tabtor {
 			'	<table class="txp-list">'.n.
 			'		<thead>'.n.
 			'			<tr>'.n.
-			'				<th>'.gTxt('rah_tabtor_id').'</th>'.n.
 			'				<th>'.gTxt('rah_tabtor_label').'</th>'.n.
 			'				<th>'.gTxt('rah_tabtor_page').'</th>'.n.
 			'				<th>'.gTxt('rah_tabtor_group').'</th>'.n.
@@ -184,7 +183,6 @@ class rah_tabtor {
 			foreach($rs as $a) {
 				$out[] = 
 					'			<tr>'.n.
-					'				<td><a href="?event='.$event.'&amp;step=edit&amp;id='.$a['id'].'">'.$a['id'].'</a></td>'.n.
 					'				<td><a href="?event='.$event.'&amp;step=edit&amp;id='.$a['id'].'">'.htmlspecialchars($a['label']).'</a></td>'.n.
 					'				<td>'.htmlspecialchars($a['page']).'</td>'.n.
 					'				<td>'.htmlspecialchars($a['tabgroup']).'</td>'.n.
@@ -196,7 +194,7 @@ class rah_tabtor {
 		else {
 			$out[] =
 				'			<tr>'.n.
-				'				<td colspan="5">'.
+				'				<td colspan="4">'.
 				
 				gTxt(
 					'rah_tabtor_nothing_to_show',
