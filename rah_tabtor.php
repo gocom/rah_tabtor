@@ -368,7 +368,7 @@ class rah_tabtor {
 				return;
 			}
 			
-			$this->edit(gTxt('rah_tabtor_updated'));
+			$this->browse(gTxt('rah_tabtor_updated'));
 			return;
 		}
 		
