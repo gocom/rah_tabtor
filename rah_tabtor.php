@@ -381,7 +381,7 @@ class rah_tabtor {
 				position='$position'"
 			) > 0
 		) {
-			$this->browse(array(gTxt('rah_tabtor_already_exists'), E_WARNING));
+			$this->edit(array(gTxt('rah_tabtor_already_exists'), E_WARNING));
 			return;
 		}
 		
