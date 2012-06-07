@@ -181,8 +181,7 @@ class rah_tabtor {
 			);
 			
 		if($rs) {
-		
-			foreach($rs as $a)
+			foreach($rs as $a) {
 				$out[] = 
 					'			<tr>'.n.
 					'				<td><a href="?event='.$event.'&amp;step=edit&amp;id='.$a['id'].'">'.$a['id'].'</a></td>'.n.
@@ -191,8 +190,10 @@ class rah_tabtor {
 					'				<td>'.htmlspecialchars($a['tabgroup']).'</td>'.n.
 					'				<td><input type="checkbox" name="selected[]" value="'.$a['id'].'" /></td>'.n.
 					'			</tr>'.n;
-		
-		} else 
+			}
+		}
+
+		else {
 			$out[] =
 				'			<tr>'.n.
 				'				<td colspan="5">'.
@@ -206,7 +207,7 @@ class rah_tabtor {
 				
 				'</td>'.n.
 				'			</tr>'.n;
-		
+		}
 		
 		$out[] = 
 			'		</tbody>'.n.
@@ -231,16 +232,12 @@ class rah_tabtor {
 		
 		global $prefs;
 		
-		extract(
-			psa(
-				array(
-					'label',
-					'page',
-					'tabgroup',
-					'position'
-				)
-			)
-		);
+		extract(psa(array(
+			'label',
+			'page',
+			'tabgroup',
+			'position'
+		)));
 		
 		if(($id = gps('id')) && $id && !ps('id')) {
 			
@@ -257,7 +254,6 @@ class rah_tabtor {
 			}
 			
 			extract($rs);
-			
 		}
 		
 		$advanced_editor = $prefs['rah_tabtor_advanced_editor'];
@@ -334,21 +330,15 @@ class rah_tabtor {
 
 	public function save() {
 		
-		extract(
-			doSlash(
-				psa(
-					array(
-						'label',
-						'page',
-						'tabgroup',
-						'id',
-						'position'
-					)
-				)
-			)
-		);
+		extract(doSlash(psa(array(
+			'label',
+			'page',
+			'tabgroup',
+			'id',
+			'position'
+		))));
 		
-		if(empty($label) || empty($page) || empty($tabgroup) || !in_array($position,range(1,9))) {
+		if(!$label || !$page || !$tabgroup || !in_array($position, range(1, 9))) {
 			$this->edit(array(gTxt('rah_tabtor_required_fields'), E_ERROR));
 			return;
 		}
@@ -548,8 +538,10 @@ EOF;
 		
 		foreach(areas() as $key => $group) {
 			$out['groups'][$key] = gTxt('tab_'.$key);
-			foreach ($group as $title => $name) 
+			
+			foreach($group as $title => $name) {
 				$out['events'][$name] = $title;
+			}
 		}
 		
 		$out['events'] = array_unique($out['events']);
