@@ -212,7 +212,7 @@ class rah_tabtor {
 		$out[] = 
 			'		</tbody>'.n.
 			'	</table>'.n.
-			'	<p id="rah_tabtor_step" class="rah_ui_step">'.n.
+			'	<p class="rah_ui_step">'.n.
 			'		<select name="step">'.n.
 			'			<option value="">'.gTxt('rah_tabtor_with_selected').'</option>'.n.
 			'			<option value="delete">'.gTxt('rah_tabtor_delete').'</option>'.n.
@@ -517,7 +517,7 @@ class rah_tabtor {
 				//-->
 			</script>
 			<style type="text/css">
-				#rah_tabtor_container #rah_tabtor_step {
+				#rah_tabtor_container .rah_ui_step {
 					text-align: right;
 				}
 			</style>
