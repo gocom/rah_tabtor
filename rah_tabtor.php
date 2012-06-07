@@ -451,7 +451,6 @@ class rah_tabtor {
 			tInput().
 			eInput($event).
 			'	<p class="nav-tertiary">'.
-				'<a class="navlink" href="?event='.$event.'">'.gTxt('rah_tabtor_main').'</a>'.
 				'<a class="navlink" href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_create_new').'</a>'.
 			'</p>'.n.
 			
