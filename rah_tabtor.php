@@ -364,7 +364,7 @@ class rah_tabtor {
 					"id='$id'"
 				) == false
 			) {
-				$this->edit(array(gTxt('rah_tabtor_error_saving'), E_ERROR));
+				$this->edit(array(gTxt('rah_tabtor_save_failed'), E_ERROR));
 				return;
 			}
 			
@@ -394,7 +394,7 @@ class rah_tabtor {
 				position='$position'"
 			) == false
 		) {
-			$this->edit(array(gTxt('rah_tabtor_error_saving'), E_ERROR));
+			$this->edit(array(gTxt('rah_tabtor_save_failed'), E_ERROR));
 			return;
 		}
 		
@@ -421,7 +421,7 @@ class rah_tabtor {
 				'id in('.implode(',', quote_list($selected)).')'
 			) == false
 		) {
-			$this->browse(array(gTxt('rah_tabtor_error_deleting'), E_ERROR));
+			$this->browse(array(gTxt('rah_tabtor_delete_failed'), E_ERROR));
 			return;	
 		}
 		
