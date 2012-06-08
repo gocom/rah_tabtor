@@ -3,7 +3,6 @@
 rah_tabtor => Tabtor
 rah_tabtor_create_new => Create a new rule
 rah_tabtor_label => Label
-rah_tabtor_posted => Updated
 rah_tabtor_page => Event
 rah_tabtor_group => Group
 rah_tabtor_nothing_to_show => Nothing to show yet. {link}.
