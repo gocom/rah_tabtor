@@ -1,10 +1,10 @@
 h1. rah_tabtor
 
-p. Makes it possible to move backend's navigation links and tabs around. With the "Textpattern":http://www.textpattern.com plugin, rah_tabtor, you can copy backend's navigation links from one tab to another. Let's say that a plugin generates it's interface under Extensions tab, but you would want it to appear under Content. With rah_tabtor that is possible.
+p. With rah_tabtor it's possible to move navigation links around on Textpattern backend's menu. Rah_tabtor can copy backend's navigation links from one navigation area to another. For instance, the plugin can cut a plugin generated navigation link and admin-side panel off from _Extensions_ area to move it _Content_.
 
 h2. Intro and description
 
-p. Rah_tabtor let's you to copy backend's navigation links from tab to tab. The plugin doesn't let you hide or remove tabs, but rah_tabtor's solely purpose is cooking copy pasta. If you want to change permissions and hide tabs based on privilege levels, I suggest checking out redbot's "bot_privs":http://forum.textpattern.com/viewtopic.php?id=28148. The two play well together.
+p. Rah_tabtor let's you to copy backend's navigation links from one tab to another. The plugin doesn't let you hide or remove tabs, but rah_tabtor's solely purpose is cooking copy pasta. If you want to change permissions and hide tabs based on privilege levels, I suggest checking out redbot's "bot_privs":http://forum.textpattern.com/viewtopic.php?id=28148. The two play well together.
 
 h2. List of features
 
