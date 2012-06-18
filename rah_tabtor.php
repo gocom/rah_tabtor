@@ -52,11 +52,10 @@ class rah_tabtor {
 			return;
 		}
 		
-		$current = 
-			isset($prefs['rah_tabtor_version']) ?
-				$prefs['rah_tabtor_version'] : 'base';
+		$current = isset($prefs['rah_tabtor_version']) ?
+			(string) $prefs['rah_tabtor_version'] : 'base';
 		
-		if(self::$version == $current)
+		if(self::$version === $current)
 			return;
 		
 		/*
