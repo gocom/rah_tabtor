@@ -18,7 +18,6 @@
 		add_privs('plugin_prefs.rah_tabtor', '1,2');
 		register_tab('extensions', 'rah_tabtor', gTxt('rah_tabtor'));
 		register_callback(array('rah_tabtor', 'panes'),'rah_tabtor');
-		register_callback(array('rah_tabtor', 'head'), 'admin_side', 'head_end');
 		register_callback(array('rah_tabtor', 'prefs'), 'plugin_prefs.rah_tabtor');
 		register_callback(array('rah_tabtor', 'install'), 'plugin_lifecycle.rah_tabtor');
 		rah_tabtor::register();
@@ -139,7 +138,7 @@ class rah_tabtor {
 				'browse' => false,
 				'edit' => false,
 				'save' => true,
-				'delete' => true
+				'multi_edit' => true,
 			);
 		
 		if(!$step || !bouncer($step, $steps))
@@ -163,10 +162,10 @@ class rah_tabtor {
 			'	<table class="txp-list">'.n.
 			'		<thead>'.n.
 			'			<tr>'.n.
+			'				<th title="'.gTxt('toggle_all_selected').'" class="multi-edit"><input name="select_all" type="checkbox" value="0" /></th>'.n.
 			'				<th>'.gTxt('rah_tabtor_label').'</th>'.n.
 			'				<th>'.gTxt('rah_tabtor_page').'</th>'.n.
 			'				<th>'.gTxt('rah_tabtor_group').'</th>'.n.
-			'				<th>&#160;</th>'.n.
 			'			</tr>'.n.
 			'		</thead>'.n.
 			'		<tbody>'.n;
@@ -182,10 +181,10 @@ class rah_tabtor {
 			foreach($rs as $a) {
 				$out[] = 
 					'			<tr>'.n.
+					'				<td><input type="checkbox" name="selected[]" value="'.$a['id'].'" /></td>'.n.
 					'				<td><a href="?event='.$event.'&amp;step=edit&amp;id='.$a['id'].'">'.htmlspecialchars($a['label']).'</a></td>'.n.
 					'				<td>'.htmlspecialchars($a['page']).'</td>'.n.
 					'				<td>'.htmlspecialchars($a['tabgroup']).'</td>'.n.
-					'				<td><input type="checkbox" name="selected[]" value="'.$a['id'].'" /></td>'.n.
 					'			</tr>'.n;
 			}
 		}
@@ -209,13 +208,7 @@ class rah_tabtor {
 		$out[] = 
 			'		</tbody>'.n.
 			'	</table>'.n.
-			'	<p class="rah_ui_step">'.n.
-			'		<select name="step">'.n.
-			'			<option value="">'.gTxt('rah_tabtor_with_selected').'</option>'.n.
-			'			<option value="delete">'.gTxt('rah_tabtor_delete').'</option>'.n.
-			'		</select>'.n.
-			'		<input type="submit" value="'.gTxt('go').'" />'.n.
-			'	</p>'.n;
+			multi_edit(array('delete' => gTxt('rah_tabtor_delete')), $event, 'multi_edit');
 		
 		$this->pane($out, 'rah_tabtor', $message);
 	}
@@ -400,28 +393,46 @@ class rah_tabtor {
 		register_tab($tabgroup, $page, gTxt($label));
 		$this->browse(gTxt('rah_tabtor_saved'));
 	}
+	
+	/**
+	 * Multi-edit handler
+	 */
+	
+	public function multi_edit() {
+		
+		extract(psa(array(
+			'selected',
+			'edit_method',
+		)));
+		
+		if(!is_string($edit_method) || empty($selected) || !is_array($selected)) {
+			$this->browser(array(gTxt('rah_tabtor_select_something'), E_WARNING));
+			return;
+		}
+		
+		$method = 'multi_option_' . $edit_method;
+		
+		if(!method_exists($this, $method)) {
+			$method = 'browse';
+		}
+		
+		$this->$method();
+	}
 
 	/**
 	 * Delete selected items
 	 */
 
-	public function delete() {
-		
-		$selected = ps('selected');
-		
-		if(!is_array($selected) || empty($selected)) {
-			$this->browse(array(gTxt('rah_tabtor_select_something'), E_WARNING));
-			return;
-		}
+	private function multi_option_delete() {
 		
 		if(
 			safe_delete(
 				'rah_tabtor',
-				'id in('.implode(',', quote_list($selected)).')'
-			) == false
+				'id in('.implode(',', quote_list(ps('selected'))).')'
+			) === false
 		) {
 			$this->browse(array(gTxt('rah_tabtor_delete_failed'), E_ERROR));
-			return;	
+			return;
 		}
 		
 		$this->browse(gTxt('rah_tabtor_removed'));
@@ -446,7 +457,7 @@ class rah_tabtor {
 		
 		echo 
 			n.
-			'<form method="post" action="index.php" id="rah_tabtor_container" class="txp-container">'.n.
+			'<form method="post" action="index.php" class="txp-container multi_edit_form">'.n.
 			tInput().
 			eInput($event).
 			'	<p class="nav-tertiary">'.
@@ -456,69 +467,6 @@ class rah_tabtor {
 			$out.n.
 			
 			'</form>'.n;
-	}
-
-	/**
-	 * Adds styles and JavaScript to the <head>
-	 */
-	
-	static public function head() {
-		global $event;
-		
-		if($event != 'rah_tabtor')
-			return;
-			
-		gTxtScript('are_you_sure');
-		
-		echo <<<EOF
-			<script type="text/javascript">
-				<!--
-				$(document).ready(function(){
-					var step = $('select[name=step]').parent('p');
-					var form = step.parents('form');
-				
-					if(step.length < 1)
-						return;
-					
-					step.find('input[type=submit]').hide();
-
-					if(form.find('input[type=checkbox]:checked').val() == null) {
-						step.hide();
-					}
-
-					step.find('select[name=step]').val('');
-
-					form.find('input[type=checkbox], td').click(function(){
-						step.find('select[name=step]').val('');
-							
-						if(form.find('input[type=checkbox]:checked').val() != null) {
-							step.slideDown();
-						}
-						else {
-							step.slideUp();
-						}
-					});
-
-					step.find('select[name="step"]').change(function(){
-						form.submit();
-					});
-
-					form.submit(function() {
-						if(!verify(textpattern.gTxt('are_you_sure'))) {
-							step.find('select[name=step]').val('');
-							return false;
-						}
-					});
-				});
-				//-->
-			</script>
-			<style type="text/css">
-				#rah_tabtor_container .rah_ui_step {
-					text-align: right;
-				}
-			</style>
-
-EOF;
 	}
 
 	/**
