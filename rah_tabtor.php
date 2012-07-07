@@ -135,14 +135,14 @@ class rah_tabtor {
 		
 		$steps = 
 			array(
-				'browse' => false,
+				'browser' => false,
 				'edit' => false,
 				'save' => true,
 				'multi_edit' => true,
 			);
 		
 		if(!$step || !bouncer($step, $steps))
-			$step = 'browse';
+			$step = 'browser';
 		
 		$panes = new rah_tabtor();
 		$panes->$step();
@@ -153,7 +153,7 @@ class rah_tabtor {
 	 * @param string $message The message shown in the page header.
 	 */
 
-	public function browse($message='') {
+	public function browser($message='') {
 		
 		global $event;
 		
@@ -239,7 +239,7 @@ class rah_tabtor {
 				);
 			
 			if(!$rs) {
-				$this->browse('rah_tabtor_unknown_item');
+				$this->browser('rah_tabtor_unknown_item');
 				return;
 			}
 			
@@ -342,7 +342,7 @@ class rah_tabtor {
 					"id='$id' LIMIT 0, 1"
 				)
 			) {
-				$this->browse(array(gTxt('rah_tabtor_unknown_item'), E_ERROR));
+				$this->browser(array(gTxt('rah_tabtor_unknown_item'), E_ERROR));
 				return;
 			}
 			
@@ -360,7 +360,7 @@ class rah_tabtor {
 				return;
 			}
 			
-			$this->browse(gTxt('rah_tabtor_updated'));
+			$this->browser(gTxt('rah_tabtor_updated'));
 			return;
 		}
 		
@@ -391,7 +391,7 @@ class rah_tabtor {
 		}
 		
 		register_tab($tabgroup, $page, gTxt($label));
-		$this->browse(gTxt('rah_tabtor_saved'));
+		$this->browser(gTxt('rah_tabtor_saved'));
 	}
 	
 	/**
@@ -413,7 +413,7 @@ class rah_tabtor {
 		$method = 'multi_option_' . $edit_method;
 		
 		if(!method_exists($this, $method)) {
-			$method = 'browse';
+			$method = 'browser';
 		}
 		
 		$this->$method();
@@ -431,11 +431,11 @@ class rah_tabtor {
 				'id in('.implode(',', quote_list(ps('selected'))).')'
 			) === false
 		) {
-			$this->browse(array(gTxt('rah_tabtor_delete_failed'), E_ERROR));
+			$this->browser(array(gTxt('rah_tabtor_delete_failed'), E_ERROR));
 			return;
 		}
 		
-		$this->browse(gTxt('rah_tabtor_removed'));
+		$this->browser(gTxt('rah_tabtor_removed'));
 	}
 
 	/**
