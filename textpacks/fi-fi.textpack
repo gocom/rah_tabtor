@@ -1,7 +1,7 @@
 #@admin
 #@language fi-fi
 rah_tabtor => Tabtor
-rah_tabtor_create_new => Luo uusi määritys
+rah_tabtor_create_new => Luo määritys
 rah_tabtor_label => Nimi
 rah_tabtor_page => Sivu
 rah_tabtor_group => Ryhmä
