@@ -462,8 +462,8 @@ class rah_tabtor {
 			'<form method="post" action="index.php" class="txp-container multi_edit_form">'.n.
 			tInput().
 			eInput($event).
-			'	<p class="nav-tertiary">'.
-				'<a class="navlink" href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_create_new').'</a>'.
+			'	<p class="txp-buttons">'.
+				'<a href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_create_new').'</a>'.
 			'</p>'.n.
 			
 			$out.n.
