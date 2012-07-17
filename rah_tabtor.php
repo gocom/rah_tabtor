@@ -159,6 +159,7 @@ class rah_tabtor {
 		
 		$out[] = 
 			
+			'<div class="txp-listtables">'.n.
 			'	<table class="txp-list">'.n.
 			'		<thead>'.n.
 			'			<tr>'.n.
@@ -208,6 +209,7 @@ class rah_tabtor {
 		$out[] = 
 			'		</tbody>'.n.
 			'	</table>'.n.
+			'</div>'.n.
 			multi_edit(array('delete' => gTxt('rah_tabtor_delete')), $event, 'multi_edit');
 		
 		$this->pane($out, 'rah_tabtor', $message);
