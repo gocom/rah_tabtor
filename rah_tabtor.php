@@ -183,9 +183,9 @@ class rah_tabtor {
 				$out[] = 
 					'			<tr>'.n.
 					'				<td><input type="checkbox" name="selected[]" value="'.$a['id'].'" /></td>'.n.
-					'				<td><a href="?event='.$event.'&amp;step=edit&amp;id='.$a['id'].'">'.htmlspecialchars($a['label']).'</a></td>'.n.
-					'				<td>'.htmlspecialchars($a['page']).'</td>'.n.
-					'				<td>'.htmlspecialchars($a['tabgroup']).'</td>'.n.
+					'				<td><a href="?event='.$event.'&amp;step=edit&amp;id='.$a['id'].'">'.txpspecialchars($a['label']).'</a></td>'.n.
+					'				<td>'.txpspecialchars($a['page']).'</td>'.n.
+					'				<td>'.txpspecialchars($a['tabgroup']).'</td>'.n.
 					'			</tr>'.n;
 			}
 		}
@@ -259,7 +259,7 @@ class rah_tabtor {
 			'	<p>'.n.
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_label').'<br />'.n.
-			'			<input type="text" name="label" value="'.htmlspecialchars($label).'" />'.n.
+			'			<input type="text" name="label" value="'.txpspecialchars($label).'" />'.n.
 			'		</label>'.n.
 			'	</p>'.n.
 			
@@ -273,7 +273,7 @@ class rah_tabtor {
 		
 		else {
 			$out[] =
-				'			<input type="text" name="page" value="'.htmlspecialchars($page).'" />'.n;
+				'			<input type="text" name="page" value="'.txpspecialchars($page).'" />'.n;
 		}
 		
 		$out[] =
@@ -291,7 +291,7 @@ class rah_tabtor {
 		
 		else {
 			$out[] =
-				'			<input type="text" name="tabgroup" value="'.htmlspecialchars($tabgroup).'" />'.n;
+				'			<input type="text" name="tabgroup" value="'.txpspecialchars($tabgroup).'" />'.n;
 		}
 		
 		$out[] =
