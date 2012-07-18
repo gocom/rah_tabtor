@@ -241,7 +241,7 @@ class rah_tabtor {
 				);
 			
 			if(!$rs) {
-				$this->browser('rah_tabtor_unknown_item');
+				$this->browser(array(gTxt('rah_tabtor_unknown_item'), E_ERROR));
 				return;
 			}
 			
