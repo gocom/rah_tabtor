@@ -459,6 +459,7 @@ class rah_tabtor {
 		
 		echo 
 			n.
+			'<h1 class="txp-heading">'.gTxt('rah_tabtor').'</h1>'.n.
 			'<form method="post" action="index.php" class="txp-container multi_edit_form">'.n.
 			tInput().
 			eInput($event).
