@@ -51,21 +51,8 @@ class rah_tabtor {
 			return;
 		}
 		
-		$current = isset($prefs['rah_tabtor_version']) ?
-			(string) $prefs['rah_tabtor_version'] : 'base';
-		
-		if(self::$version === $current)
+		if((string) get_pref(__CLASS__.'_version') === self::$version)
 			return;
-		
-		/*
-			Stores tab definitions
-			
-			* id: Primary key. Used for updating and deleting.
-			* tabgroup: The name of the main tab group.
-			* page: The page linking to.
-			* label: Link label.
-			* position: Sorting value.
-		*/
 		
 		safe_query(
 			"CREATE TABLE IF NOT EXISTS ".safe_pfx('rah_tabtor')." (
@@ -78,15 +65,11 @@ class rah_tabtor {
 			) PACK_KEYS=1 AUTO_INCREMENT=1 CHARSET=utf8"
 		);
 		
-		if($current == 'base') {
-			@safe_query(
-				'DROP TABLE IF EXISTS '.safe_pfx('rah_tabtor_prefs')
-			);
-		}
+		@safe_query('DROP TABLE IF EXISTS '.safe_pfx('rah_tabtor_prefs'));
 		
 		set_pref('rah_tabtor_advanced_editor', 0, 'rah_tabtor', 2, '', 0);
-		set_pref('rah_tabtor_version', self::$version, 'rah_tabtor', 2, '', 0);
-		$prefs['rah_tabtor_version'] = self::$version;
+		set_pref(__CLASS__.'_version', self::$version, 'rah_tabtor', 2, '', 0);
+		$prefs[__CLASS__.'_version'] = self::$version;
 	}
 
 	/**
