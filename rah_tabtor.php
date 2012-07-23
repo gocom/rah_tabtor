@@ -268,7 +268,7 @@ class rah_tabtor {
 			'			'.gTxt('rah_tabtor_page').'<br />'.n;
 		
 		if($tabs !== false && $advanced_editor == 0 && (empty($page) || isset($tabs['events'][$page]))) {
-			$out[] = selectInput('page', $tabs['events'], $page);		
+			$out[] = selectInput('page', $tabs['events'], $page);
 		}
 		
 		else {
