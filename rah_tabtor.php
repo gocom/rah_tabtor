@@ -67,7 +67,6 @@ class rah_tabtor {
 		
 		@safe_query('DROP TABLE IF EXISTS '.safe_pfx('rah_tabtor_prefs'));
 		
-		set_pref('rah_tabtor_advanced_editor', 0, 'rah_tabtor', 2, '', 0);
 		set_pref(__CLASS__.'_version', self::$version, 'rah_tabtor', 2, '', 0);
 		$prefs[__CLASS__.'_version'] = self::$version;
 	}
@@ -205,8 +204,6 @@ class rah_tabtor {
 
 	public function edit($message='') {
 		
-		global $prefs;
-		
 		extract(psa(array(
 			'label',
 			'page',
@@ -231,7 +228,7 @@ class rah_tabtor {
 			extract($rs);
 		}
 		
-		$advanced_editor = $prefs['rah_tabtor_advanced_editor'];
+		$advanced_editor = get_pref('rah_tabtor_advanced_editor');
 		$tabs = $this->get_events();
 		
 		$out[] = 
@@ -250,7 +247,7 @@ class rah_tabtor {
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_page').'<br />'.n;
 		
-		if($tabs !== false && $advanced_editor == 0 && (empty($page) || isset($tabs['events'][$page]))) {
+		if($tabs !== false && !$advanced_editor && (empty($page) || isset($tabs['events'][$page]))) {
 			$out[] = selectInput('page', $tabs['events'], $page);
 		}
 		
@@ -268,7 +265,7 @@ class rah_tabtor {
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_group').'<br />'.n;
 		
-		if($tabs !== false && $advanced_editor == 0 && (empty($tabgroup) || isset($tabs['groups'][$tabgroup]))) {
+		if($tabs !== false && !$advanced_editor && (empty($tabgroup) || isset($tabs['groups'][$tabgroup]))) {
 			$out[] = selectInput('tabgroup', $tabs['groups'], $tabgroup);
 		}
 		
