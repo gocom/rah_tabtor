@@ -33,6 +33,8 @@ h3. Version 0.3 - upcoming
 * Added: Tell activity message its type (error, success, warning). Helps themes to style messages accordingly.
 * Added: @.txp-container@ selector to the form.
 * Added: Tabs created by plugins are now moved instead of copied. This doesn't affect core tabs, which are on the off-zone and can not be modified.
+* Added: Finnish translation.
+* Added: French translation by "Patrick Lefevre":https://twitter.com/lowel.
 * Improved: Installer now defines default values for the varchar fields.
 * Improved: Sort items in in the table by their label.
 * Removed: Embedded language strings from the source code in favor of external Textpacks.
