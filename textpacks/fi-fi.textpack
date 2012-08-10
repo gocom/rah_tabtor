@@ -7,7 +7,6 @@ rah_tabtor_page => Sivu
 rah_tabtor_group => Ryhmä
 rah_tabtor_nothing_to_show => Ei luotuja määrityksiä. {link}.
 rah_tabtor_start_by_link => Aloita luomalla ensimmäinen määritys
-rah_tabtor_with_selected => Valituilla...
 rah_tabtor_delete => Poista
 rah_tabtor_position => Järjestys
 rah_tabtor_save => Tallenna
