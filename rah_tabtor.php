@@ -13,15 +13,13 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-	if(@txpinterface == 'admin') {
-		add_privs('rah_tabtor', '1,2');
-		add_privs('plugin_prefs.rah_tabtor', '1,2');
-		register_tab('extensions', 'rah_tabtor', gTxt('rah_tabtor'));
-		register_callback(array('rah_tabtor', 'panes'),'rah_tabtor');
-		register_callback(array('rah_tabtor', 'prefs'), 'plugin_prefs.rah_tabtor');
-		register_callback(array('rah_tabtor', 'install'), 'plugin_lifecycle.rah_tabtor');
-		rah_tabtor::register();
-	}
+	add_privs('rah_tabtor', '1,2');
+	add_privs('plugin_prefs.rah_tabtor', '1,2');
+	register_tab('extensions', 'rah_tabtor', gTxt('rah_tabtor'));
+	register_callback(array('rah_tabtor', 'panes'),'rah_tabtor');
+	register_callback(array('rah_tabtor', 'prefs'), 'plugin_prefs.rah_tabtor');
+	register_callback(array('rah_tabtor', 'install'), 'plugin_lifecycle.rah_tabtor');
+	rah_tabtor::register();
 
 class rah_tabtor {
 
