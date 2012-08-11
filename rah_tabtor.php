@@ -112,7 +112,7 @@ class rah_tabtor {
 
 	static public function panes() {
 		require_privs('rah_tabtor');
-		self::install();
+
 		global $step;
 		
 		$steps = 
