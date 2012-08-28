@@ -13,13 +13,7 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-	add_privs('rah_tabtor', '1,2');
-	add_privs('plugin_prefs.rah_tabtor', '1,2');
-	register_tab('extensions', 'rah_tabtor', gTxt('rah_tabtor'));
-	register_callback(array('rah_tabtor', 'panes'),'rah_tabtor');
-	register_callback(array('rah_tabtor', 'prefs'), 'plugin_prefs.rah_tabtor');
-	register_callback(array('rah_tabtor', 'install'), 'plugin_lifecycle.rah_tabtor');
-	rah_tabtor::register();
+new rah_tabtor();
 
 class rah_tabtor {
 
@@ -68,12 +62,26 @@ class rah_tabtor {
 		set_pref(__CLASS__.'_version', self::$version, 'rah_tabtor', 2, '', 0);
 		$prefs[__CLASS__.'_version'] = self::$version;
 	}
+	
+	/**
+	 * Constructor
+	 */
+	
+	public function __construct() {
+		add_privs('rah_tabtor', '1,2');
+		add_privs('plugin_prefs.rah_tabtor', '1,2');
+		register_tab('extensions', 'rah_tabtor', gTxt('rah_tabtor'));
+		register_callback(array($this, 'panes'),'rah_tabtor');
+		register_callback(array($this, 'prefs'), 'plugin_prefs.rah_tabtor');
+		register_callback(array(__CLASS__, 'install'), 'plugin_lifecycle.rah_tabtor');
+		$this->register();
+	}
 
 	/**
 	 * Registers the tabs
 	 */
 
-	static public function register() {
+	public function register() {
 		
 		global $plugin_areas;
 		
@@ -108,7 +116,7 @@ class rah_tabtor {
 	 * Delivers panes
 	 */
 
-	static public function panes() {
+	public function panes() {
 		require_privs('rah_tabtor');
 
 		global $step;
@@ -121,11 +129,11 @@ class rah_tabtor {
 				'multi_edit' => true,
 			);
 		
-		if(!$step || !bouncer($step, $steps))
+		if(!$step || !bouncer($step, $steps)) {
 			$step = 'browser';
+		}
 		
-		$panes = new rah_tabtor();
-		$panes->$step();
+		$this->$step();
 	}
 
 	/**
@@ -479,7 +487,7 @@ class rah_tabtor {
 	 * Redirect to the admin-side interface
 	 */
 
-	static public function prefs() {
+	public function prefs() {
 		header('Location: ?event=rah_tabtor');
 		echo 
 			'<p>'.n.
