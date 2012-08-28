@@ -2,27 +2,20 @@ h1. rah_tabtor
 
 p. With rah_tabtor it's possible to move navigation links around on Textpattern backend's menu. Rah_tabtor can copy backend's navigation links from one navigation area to another. For instance, the plugin can cut a plugin generated navigation link and admin-side panel off from _Extensions_ area to move it _Content_.
 
-h2. Intro and description
+h2. Basics
 
 p. Rah_tabtor let's you to copy backend's navigation links from one tab to another. The plugin doesn't let you hide or remove tabs, but rah_tabtor's solely purpose is cooking copy pasta. If you want to change permissions and hide tabs based on privilege levels, I suggest checking out redbot's "bot_privs":http://forum.textpattern.com/viewtopic.php?id=28148. The two play well together.
-
-h2. List of features
-
-* Copy backend's navigation links from one tab to another.
-* Clean interface under _Extensions/Tabtor_.
-* Let's you freely decide the navigation link labels, and supports TXP's language strings.
-* Doesn't interfere with other plugins or core; uses TXP's standard tab registering features.
 
 h2. Requirements
 
 p. Rah_tabtor's minimum requirements:
 
 * Textpattern v4.5.0 or newer.
-* PHP5 or newer
+* PHP 5.2 or newer
 
-h2. Installation and usage
+h2. Installing
 
-p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use the functionalities. You can find rah_tabtor's preferences pane under _Extensions/Tabtor_.
+p. Todo.
 
 h2. Changelog
 
@@ -43,7 +36,7 @@ h3. Version 0.3 - upcoming
 * Changed: Plugin now uses PHP5-level OOP.
 * Changed: JavaScript improvements.
 * Changed: Use gTxt()'s own replacement tag support.
-* Now requires PHP5 or newer, and Textpattern v4.5.0 or newer.
+* Now requires Textpattern v4.5.0 or newer.
 
 h3. Version 0.2 - 2011/06/06
 
