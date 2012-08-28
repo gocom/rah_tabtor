@@ -17,6 +17,10 @@ h2. Installing
 
 p. Todo.
 
+h2. Moving a navigation tab
+
+p. Todo.
+
 h2. Changelog
 
 h3. Version 0.3 - upcoming
