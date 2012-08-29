@@ -1,10 +1,22 @@
 h1. rah_tabtor
 
-p. With rah_tabtor it's possible to move navigation links around on Textpattern backend's menu. Rah_tabtor can copy backend's navigation links from one navigation area to another. For instance, the plugin can cut a plugin generated navigation link and admin-side panel off from _Extensions_ area to move it _Content_.
+p. Rah_tabtor makes it possible to move "Textpattern's":http://textpattern.com admin-side navigation items around in the in the main menubar. For instance, with rah_tabtor you can move a plugin generated navigation item from *Extensions* to the *Content* menu. This allows moving admin-side panels from a one location to an another.
 
 h2. Basics
 
-p. Rah_tabtor let's you to copy backend's navigation links from one tab to another. The plugin doesn't let you hide or remove tabs, but rah_tabtor's solely purpose is cooking copy pasta. If you want to change permissions and hide tabs based on privilege levels, I suggest checking out redbot's "bot_privs":http://forum.textpattern.com/viewtopic.php?id=28148. The two play well together.
+p. Rah_tabtor let's you to clone and cut backend's navigation links from a tab area or a pulldown menu to another. Whether a menu item can be merely cloned or cut depends on the origin of the item. Thiscomes down to technical and implementation limitations. A plugin generated menu item can be cut and moved from the original spot, while built-in core items can only be cloned, creating duplicates. Removing the original menu item is not possible when it comes to core menus.
+
+h3. Cutting plugin generated menu items
+
+p. When rah_tabtor is used for a plugin generated menu item, the item can be cut or cloned by your choosing. The modified menu item is removed from the original spot and presented in the set target location or locations. Multiple cloned menu items that point to the same panel are created by creating additional rules for the same target item.
+
+h3. Cloning built-in menu items
+
+p. Due to limitations, built-in core menus can only be cloned. Original menu items can not be removed or moved in a way or other. When rah_tabtor is used for a core menu item, a clone is created.
+
+h3. Hiding and restricting menus
+
+p. The plugin doesn't let you hide or remove tabs, but rah_tabtor's solely purpose is cooking copy pasta. If you want to change permissions and hide tabs based on privilege levels, I suggest checking out redbot's "bot_privs":http://forum.textpattern.com/viewtopic.php?id=28148. The two plugins play well together.
 
 h2. Requirements
 
