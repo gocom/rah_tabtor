@@ -14,9 +14,9 @@ h3. Cloning built-in menu items
 
 p. Due to limitations, built-in core menus can only be cloned. Original menu items can not be removed or moved in a way or other. When rah_tabtor is used for a core menu item, a clone is created.
 
-h3. Hiding and restricting menus
+h3. Hiding and restricting menus, creating dynamic panels
 
-p. The plugin doesn't let you hide or remove tabs, but rah_tabtor's solely purpose is cooking copy pasta. If you want to change permissions and hide tabs based on privilege levels, I suggest checking out redbot's "bot_privs":http://forum.textpattern.com/viewtopic.php?id=28148. The two plugins play well together.
+p. Rah_tabtor doesn't hide or remove navigation items, but the plugin's solely purpose is moving while keeping up compatibility. If you wish to change permissions and hide tabs based on a privilege level, I suggest checking out Redbot's "bot_privs":http://www.redbot.it/txp/plugin-bot_privs plugin.  For creating dynamic panels that allow use Textpattern's tag markup, see "smd_tabber":http://stefdawson.com/smd_tabber. These three plugins play well together.
 
 h2. Requirements
 
