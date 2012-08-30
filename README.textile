@@ -60,7 +60,7 @@ p. Is the menu item's sorting value, used to change the item's position in the t
 
 h2. Changelog
 
-h3. Version 0.3 - upcoming
+h3. Version 0.3 - 2012/08/30
 
 * Fixed: Full Textpattern 4.5 compatibility. Improved look and feel.
 * Fixed: Uninstall query's wildcard escaping.
