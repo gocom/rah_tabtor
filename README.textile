@@ -40,19 +40,19 @@ p. After you have installed the plugin, you can find its user-interface from "Ex
 
 h2. Creating a new rule
 
-p. New rules that move navigation items can be created easily from rah_tabtor's admin-interface. From the plugin's panel you can find a button labeled as "Create new rule". Pressing this button will bring up an editor. Present will be the following options.
+p. New rules that move navigation items can be created easily from rah_tabtor's admin-interface. From the *Tabtor* panel you can find a button labeled as "Create new rule". Pressing this button will bring up an editor. Present will be the following options.
 
 h3. Label
 
-p. Is the name of the new navigation item. The option supports language strings. To use a localized existing language string as the label, you would type the string's name to the field. If the specified label doesn't match any language strings, it's displayed as it is defined.
+p. Is the name of the new navigation item. The option supports language strings. To use a existing localized language string as the label, type in the string's name to the field. If the specified label doesn't match any language strings, it's displayed as it is.
 
 h3. Event
 
-p. Is the moved menu item. From the list you can find any item that can be moved by you. You can only see menu items you have permissions to access.
+p. Is the moved menu item. From the list you can find any item that can be moved.
 
 h3. Group
 
-p. Is the target navigation area or tab where the menu item is moved to. Present will be Home, Content, Presentation, Admin and Extensions.
+p. Is the target navigation area, menu or tab where the menu item is moved to. Available options are Home, Content, Presentation, Admin and Extensions.
 
 h3. Position
 
