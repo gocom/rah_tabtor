@@ -155,6 +155,9 @@ class rah_tabtor {
 		
 		$out[] = 
 			
+			'<form method="post" action="index.php" class="multi_edit_form">'.n.
+			tInput().
+			
 			'<div class="txp-listtables">'.n.
 			'	<table class="txp-list">'.n.
 			'		<thead>'.n.
@@ -206,7 +209,8 @@ class rah_tabtor {
 			'		</tbody>'.n.
 			'	</table>'.n.
 			'</div>'.n.
-			multi_edit(array('delete' => gTxt('rah_tabtor_delete')), $event, 'multi_edit');
+			multi_edit(array('delete' => gTxt('rah_tabtor_delete')), $event, 'multi_edit').n.
+			'</form>';
 		
 		$this->pane($out, 'rah_tabtor', $message);
 	}
@@ -217,6 +221,8 @@ class rah_tabtor {
 	 */
 
 	public function edit($message='') {
+		
+		global $event;
 		
 		extract(psa(array(
 			'label',
@@ -246,7 +252,9 @@ class rah_tabtor {
 		$tabs = $this->get_events();
 		
 		$out[] = 
-		
+			'<form method="post" action="index.php">'.n.
+			tInput().
+			eInput($event).
 			sInput('save').
 			hInput('id', $id).
 			
@@ -304,7 +312,8 @@ class rah_tabtor {
 			
 			'	<p>'.n.
 			'		<input type="submit" value="'.gTxt('rah_tabtor_save').'" class="publish" />'.n.
-			'	</p>'.n
+			'	</p>'.n.
+			'</form>'
 		;
 		
 		$this->pane($out, 'rah_tabtor', $message);
@@ -454,16 +463,12 @@ class rah_tabtor {
 		echo 
 			n.
 			'<h1 class="txp-heading">'.gTxt('rah_tabtor').'</h1>'.n.
-			'<form method="post" action="index.php" class="txp-container multi_edit_form">'.n.
-			tInput().
-			eInput($event).
+			'<div class="txp-container">'.n.
 			'	<p class="txp-buttons">'.
 				'<a href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_create_new').'</a>'.
 			'</p>'.n.
-			
 			$out.n.
-			
-			'</form>'.n;
+			'</div>'.n;
 	}
 
 	/**
