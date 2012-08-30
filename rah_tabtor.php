@@ -17,7 +17,7 @@ new rah_tabtor();
 
 class rah_tabtor {
 
-	static public $version = '0.3';
+	static public $version = '0.3.1';
 	
 	/**
 	 * @var array Stores plugin areas
