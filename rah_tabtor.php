@@ -18,6 +18,12 @@ new rah_tabtor();
 class rah_tabtor {
 
 	static public $version = '0.2';
+	
+	/**
+	 * @var array Stores plugin areas
+	 */
+	
+	protected $plugin_areas = array();
 
 	/**
 	 * Does installing and uninstalling.
@@ -92,9 +98,11 @@ class rah_tabtor {
 				'1=1 ORDER BY position asc'
 			);
 		
-		if(!$rs) 
+		if(!$rs) {
 			return;
+		}
 		
+		$this->plugin_areas = $plugin_areas;
 		$unset = array();
 		
 		foreach($rs as $a) {
@@ -464,8 +472,17 @@ class rah_tabtor {
 
 	private function get_events() {
 		
-		if(!function_exists('areas') || !is_array(areas()))
+		global $plugin_areas;
+		
+		if(!function_exists('areas') || !is_array(areas())) {
 			return false;
+		}
+		
+		$r = $plugin_areas;
+		
+		if($this->plugin_areas) {
+			$plugin_areas = $this->plugin_areas;
+		}
 		
 		$out = array();
 		
@@ -479,6 +496,7 @@ class rah_tabtor {
 		
 		$out['events'] = array_unique($out['events']);
 		asort($out['events']);
+		$plugin_areas = $r;
 		
 		return $out;
 	}
