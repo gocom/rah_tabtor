@@ -16,7 +16,7 @@ p. Due to limitations, built-in core menus can only be cloned. Original menu ite
 
 h3. Hiding and restricting menus, creating dynamic panels
 
-p. Rah_tabtor doesn't hide or remove navigation items, but the plugin's solely purpose is exchanging items between menus. If you wish to change permissions and hide tabs based on a privilege level, I suggest checking out Redbot's "bot_privs":http://www.redbot.it/txp/plugin-bot_privs plugin.  For creating dynamic panels that allow use Textpattern's tag markup, see "smd_tabber":http://stefdawson.com/smd_tabber. These three plugins play well together.
+p. Rah_tabtor doesn't hide or remove navigation items, but the plugin's solely purpose is exchanging items between menus. If you wish to change permissions and hide tabs based on a privilege level, I suggest checking out Redbot's "bot_privs":http://www.redbot.it/txp/plugin-bot_privs plugin.  For creating dynamic panels that allow use Textpattern's tag markup, see Stef Dawson's "smd_tabber":http://stefdawson.com/smd_tabber. These three plugins play well together.
 
 h2. Requirements
 
