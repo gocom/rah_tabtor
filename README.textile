@@ -62,22 +62,18 @@ h2. Changelog
 
 h3. Version 0.3 - upcoming
 
+* Fixed: Full Textpattern 4.5 compatibility. Improved look and feel.
 * Fixed: Uninstall query's wildcard escaping.
 * Added: CSRF protection.
 * Added: Tell activity message its type (error, success, warning). Helps themes to style messages accordingly.
-* Added: @.txp-container@ selector to the form.
-* Added: Tabs created by plugins are now moved instead of copied. This doesn't affect core tabs, which are on the off-zone and can not be modified.
+* Added: Menu items created by plugins are now moved instead of copied. This doesn't affect core tabs, which are protected and can not be modified.
 * Added: Finnish translation.
 * Added: French translation by "Patrick Lefevre":https://twitter.com/lowel.
 * Improved: Installer now defines default values for the varchar fields.
-* Improved: Sort items in in the table by their label.
+* Improved: Sort items in in the list table by their label.
 * Removed: Embedded language strings from the source code in favor of external Textpacks.
 * Removed: Documentation link from navigation.
-* Removed: Don't set specific pixel widths for form inputs. Improves fluid layout support.
-* Changed: Plugin now uses PHP5-level OOP.
-* Changed: JavaScript improvements.
-* Changed: Use gTxt()'s own replacement tag support.
-* Now requires Textpattern v4.5.0 or newer.
+* Now requires Textpattern v4.5.0 or newer, and PHP 5.2 or newer.
 
 h3. Version 0.2 - 2011/06/06
 
