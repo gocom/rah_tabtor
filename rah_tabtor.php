@@ -49,8 +49,9 @@ class rah_tabtor {
 			return;
 		}
 		
-		if((string) get_pref(__CLASS__.'_version') === self::$version)
+		if((string) get_pref(__CLASS__.'_version') === self::$version) {
 			return;
+		}
 		
 		safe_query(
 			"CREATE TABLE IF NOT EXISTS ".safe_pfx('rah_tabtor')." (
