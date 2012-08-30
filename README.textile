@@ -1,14 +1,14 @@
 h1. rah_tabtor
 
-p. Rah_tabtor makes it possible to move "Textpattern's":http://textpattern.com admin-side navigation items around in the in the main menubar. For instance, with rah_tabtor you can move a plugin generated navigation item from *Extensions* to the *Content* menu. This allows moving admin-side panels from a one location to an another.
+p. Rah_tabtor makes it possible to move "Textpattern CMS'":http://textpattern.com admin-side navigation items around in the in the main menubar. This allows moving admin-side panels from a menu to an another. For instance, with rah_tabtor you can move a plugin generated navigation item from the *Extensions* to the *Content* menu.
 
 h2. Basics
 
-p. Rah_tabtor let's you to clone and cut backend's navigation links from a tab area or a pulldown menu to another. Whether a menu item can be merely cloned or cut depends on the origin of the item. Thiscomes down to technical and implementation limitations. A plugin generated menu item can be cut and moved from the original spot, while built-in core items can only be cloned, creating duplicates. Removing the original menu item is not possible when it comes to core menus.
+p. Rah_tabtor let's you to clone and cut backend's navigation links from a tab area or a dropdown menu to an another. Whether a menu item can be merely cloned or cut depends on the origin of the item. This comes down to technical and implementation limitations. A plugin generated menu item can be cut and moved from the original spot, while built-in core items can only be cloned, creating duplicates. Removing the original menu item is not possible when it comes to core menus.
 
 h3. Cutting plugin generated menu items
 
-p. When rah_tabtor is used for a plugin generated menu item, the item can be cut or cloned by your choosing. The modified menu item is removed from the original spot and presented in the set target location or locations. Multiple cloned menu items that point to the same panel are created by creating additional rules for the same target item.
+p. When rah_tabtor is used for a plugin generated menu item, the item can be cut or cloned by your choosing. The modified menu item is removed from the original spot and presented in the set target location or multiple locations. Multiple menu items that point to the same panel are created by creating additional rules for the same target menu item.
 
 h3. Cloning built-in menu items
 
@@ -16,7 +16,7 @@ p. Due to limitations, built-in core menus can only be cloned. Original menu ite
 
 h3. Hiding and restricting menus, creating dynamic panels
 
-p. Rah_tabtor doesn't hide or remove navigation items, but the plugin's solely purpose is moving while keeping up compatibility. If you wish to change permissions and hide tabs based on a privilege level, I suggest checking out Redbot's "bot_privs":http://www.redbot.it/txp/plugin-bot_privs plugin.  For creating dynamic panels that allow use Textpattern's tag markup, see "smd_tabber":http://stefdawson.com/smd_tabber. These three plugins play well together.
+p. Rah_tabtor doesn't hide or remove navigation items, but the plugin's solely purpose is exchanging items between menus. If you wish to change permissions and hide tabs based on a privilege level, I suggest checking out Redbot's "bot_privs":http://www.redbot.it/txp/plugin-bot_privs plugin.  For creating dynamic panels that allow use Textpattern's tag markup, see "smd_tabber":http://stefdawson.com/smd_tabber. These three plugins play well together.
 
 h2. Requirements
 
@@ -36,11 +36,11 @@ p. Rah_tabtor's installation follows the standard plugin installation steps.
 
 h2. Configuring
 
-p. After you have installed the plugin, you can find its user-interface from "Extensions":http://textpattern.net/wiki/index.php?title=extensions menu, named as *Tabtor*. The plugin's interface allows creating, editing and deleting navigation item rules.
+p. After you have installed the plugin, you can find its user-interface and options from "Extensions":http://textpattern.net/wiki/index.php?title=extensions menu, named as *Tabtor*. The plugin's panel allows creating, editing and deleting navigation item rules.
 
 h2. Creating a new rule
 
-p. New rules that move navigation items can be created easily from rah_tabtor's admin-interface. From the *Tabtor* panel you can find a button labeled as "Create new rule". Pressing this button will bring up an editor. Present will be the following options.
+p. New rules that move navigation items can be created easily directly from rah_tabtor's admin-interface. From the *Tabtor* panel you can find a button labeled as *Create new rule*. Pressing this button will bring up an editor. Present will be the following options.
 
 h3. Label
 
@@ -56,7 +56,7 @@ p. Is the target navigation area, menu or tab where the menu item is moved to. A
 
 h3. Position
 
-p. Is the menu items sorting value, used to change the item's position in the menu. The position will not affect existing menu items. The position is only used among moved menu items. All items that are moved using rah_tabtor will always appear after existing core menu items. This is due to technical limitations.
+p. Is the menu item's sorting value, used to change the item's position in the target menu. The position will not affect existing built-in core menu items. The position is only used among moved menu items. All items that are moved using rah_tabtor will always appear after existing core menu items. This is due to technical limitations.
 
 h2. Changelog
 
