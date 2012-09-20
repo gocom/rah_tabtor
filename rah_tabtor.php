@@ -67,7 +67,6 @@ class rah_tabtor {
 		@safe_query('DROP TABLE IF EXISTS '.safe_pfx('rah_tabtor_prefs'));
 		
 		set_pref(__CLASS__.'_version', self::$version, 'rah_tabtor', 2, '', 0);
-		$prefs[__CLASS__.'_version'] = self::$version;
 	}
 	
 	/**
