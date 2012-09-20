@@ -64,8 +64,6 @@ class rah_tabtor {
 			) PACK_KEYS=1 AUTO_INCREMENT=1 CHARSET=utf8"
 		);
 		
-		@safe_query('DROP TABLE IF EXISTS '.safe_pfx('rah_tabtor_prefs'));
-		
 		set_pref(__CLASS__.'_version', self::$version, 'rah_tabtor', 2, '', 0);
 	}
 	
