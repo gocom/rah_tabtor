@@ -3,32 +3,45 @@
 /**
  * Rah_tabtor plugin for Textpattern CMS.
  *
- * @author Jukka Svahn
- * @date 2010-
+ * @author  Jukka Svahn
+ * @date    2010-
  * @license GNU GPLv2
- * @link http://rahforum.biz/plugins/rah_tabtor
- * 
- * Copyright (C) 2011 Jukka Svahn <http://rahforum.biz>
+ * @link    http://rahforum.biz/plugins/rah_tabtor
+ *
+ * Copyright (C) 2011 Jukka Svahn http://rahforum.biz
  * Licensed under GNU Genral Public License version 2
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 new rah_tabtor();
 
+/**
+ * The plugin class.
+ */
+
 class rah_tabtor
 {
+	/**
+	 * The version number.
+	 *
+	 * @var string.
+	 */
+
 	static public $version = '0.3.1';
 
 	/**
-	 * @var array Stores plugin areas
+	 * Stores plugin areas.
+	 *
+	 * @var array
 	 */
 
 	protected $plugin_areas = array();
 
 	/**
-	 * Does installing and uninstalling.
-	 * @param string $event The admin-side event.
-	 * @param string $step The admin-side / plugin-lifecycle step.
+	 * Installer.
+	 *
+	 * @param string $event The plugin-lifecycle event
+	 * @param string $step  The plugin-lifecycle step
 	 */
 
 	static public function install($event = '', $step = '')
@@ -69,7 +82,7 @@ class rah_tabtor
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 
 	public function __construct()
@@ -84,7 +97,7 @@ class rah_tabtor
 	}
 
 	/**
-	 * Registers the tabs
+	 * Registers the tabs.
 	 */
 
 	public function register()
@@ -125,7 +138,7 @@ class rah_tabtor
 	}
 
 	/**
-	 * Delivers panes
+	 * Delivers panes.
 	 */
 
 	public function panes()
@@ -151,8 +164,9 @@ class rah_tabtor
 	}
 
 	/**
-	 * The main pane
-	 * @param string $message The message shown in the page header.
+	 * The main pane.
+	 *
+	 * @param string $message The activity message
 	 */
 
 	public function browser($message = '')
@@ -223,8 +237,9 @@ class rah_tabtor
 	}
 
 	/**
-	 * The editor pane
-	 * @param string $message The message shown in the page header.
+	 * The editor pane.
+	 *
+	 * @param string $message The activity message
 	 */
 
 	public function edit($message = '')
@@ -327,7 +342,7 @@ class rah_tabtor
 	}
 
 	/**
-	 * Does the saving work
+	 * Saves sent forms.
 	 */
 
 	public function save()
@@ -412,7 +427,7 @@ class rah_tabtor
 	}
 
 	/**
-	 * Multi-edit handler
+	 * Multi-edit handler.
 	 */
 
 	public function multi_edit()
@@ -439,7 +454,7 @@ class rah_tabtor
 	}
 
 	/**
-	 * Delete selected items
+	 * Deletes selected items.
 	 */
 
 	private function multi_option_delete()
@@ -459,10 +474,11 @@ class rah_tabtor
 	}
 
 	/**
-	 * Outputs the pane HTML markup and sets page title.
-	 * @param mixed $out Pane markup. Accepts arrays and strings.
-	 * @param string $pagetop Page title.
-	 * @param string $message Message shown in the header.
+	 * Outputs the panel's HTML markup and sets the page title.
+	 *
+	 * @param string|array $out     Pane markup
+	 * @param string       $pagetop Page title
+	 * @param string       $message Activity message
 	 */
 
 	private function pane($out, $pagetop, $message)
@@ -488,7 +504,9 @@ class rah_tabtor
 	}
 
 	/**
-	 * Lists events and tab groups
+	 * Lists admin-side events and tab groups.
+	 *
+	 * @return array List of events
 	 */
 
 	private function get_events()
@@ -527,7 +545,9 @@ class rah_tabtor
 	}
 
 	/**
-	 * Redirect to the admin-side interface
+	 * Plugin options page.
+	 *
+	 * Redirects to the admin-side interface.
 	 */
 
 	public function prefs()
