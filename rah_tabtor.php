@@ -15,14 +15,14 @@
 
 new rah_tabtor();
 
-class rah_tabtor {
-
+class rah_tabtor
+{
 	static public $version = '0.3.1';
-	
+
 	/**
 	 * @var array Stores plugin areas
 	 */
-	
+
 	protected $plugin_areas = array();
 
 	/**
@@ -31,28 +31,29 @@ class rah_tabtor {
 	 * @param string $step The admin-side / plugin-lifecycle step.
 	 */
 
-	static public function install($event='', $step='') {
-		
+	static public function install($event = '', $step = '')
+	{
 		global $prefs;
-		
-		if($step == 'deleted') {
-			
+
+		if ($step == 'deleted')
+		{
 			@safe_query(
 				'DROP TABLE IF EXISTS '.safe_pfx('rah_tabtor')
 			);
-			
+
 			safe_delete(
 				'txp_prefs',
 				"name like 'rah\_tabtor\_%'"
 			);
-			
+
 			return;
 		}
-		
-		if((string) get_pref(__CLASS__.'_version') === self::$version) {
+
+		if ((string) get_pref(__CLASS__.'_version') === self::$version)
+		{
 			return;
 		}
-		
+
 		safe_query(
 			"CREATE TABLE IF NOT EXISTS ".safe_pfx('rah_tabtor')." (
 				`id` INT(11) NOT NULL auto_increment,
@@ -63,19 +64,20 @@ class rah_tabtor {
 				PRIMARY KEY(`id`)
 			) PACK_KEYS=1 AUTO_INCREMENT=1 CHARSET=utf8"
 		);
-		
+
 		set_pref(__CLASS__.'_version', self::$version, __CLASS__, PREF_HIDDEN);
 	}
-	
+
 	/**
 	 * Constructor
 	 */
-	
-	public function __construct() {
+
+	public function __construct()
+	{
 		add_privs('rah_tabtor', '1,2');
 		add_privs('plugin_prefs.rah_tabtor', '1,2');
 		register_tab('extensions', 'rah_tabtor', gTxt('rah_tabtor'));
-		register_callback(array($this, 'panes'),'rah_tabtor');
+		register_callback(array($this, 'panes'), 'rah_tabtor');
 		register_callback(array($this, 'prefs'), 'plugin_prefs.rah_tabtor');
 		register_callback(array(__CLASS__, 'install'), 'plugin_lifecycle.rah_tabtor');
 		$this->register();
@@ -85,35 +87,39 @@ class rah_tabtor {
 	 * Registers the tabs
 	 */
 
-	public function register() {
-		
+	public function register()
+	{
 		global $plugin_areas;
-		
+
 		@$rs = 
 			safe_rows(
 				'tabgroup, page, label',
 				'rah_tabtor',
 				'1=1 ORDER BY position asc'
 			);
-		
-		if(!$rs) {
+
+		if (!$rs)
+		{
 			return;
 		}
-		
+
 		$this->plugin_areas = $plugin_areas;
 		$unset = array();
-		
-		foreach($rs as $a) {
-			
-			foreach($plugin_areas as $area => $items) {
-				foreach($items as $title => $event) {
-					if($a['page'] === $event && !in_array($event, $unset)) {
+
+		foreach ($rs as $a)
+		{
+			foreach ($plugin_areas as $area => $items)
+			{
+				foreach ($items as $title => $event)
+				{
+					if ($a['page'] === $event && !in_array($event, $unset))
+					{
 						unset($plugin_areas[$area][$title]);
 						$unset[] = $event;
 					}
 				}
 			}
-			
+
 			register_tab($a['tabgroup'], $a['page'], gTxt($a['label']));
 		}
 	}
@@ -122,11 +128,12 @@ class rah_tabtor {
 	 * Delivers panes
 	 */
 
-	public function panes() {
+	public function panes()
+	{
 		require_privs('rah_tabtor');
 
 		global $step;
-		
+
 		$steps = 
 			array(
 				'browser' => false,
@@ -134,11 +141,12 @@ class rah_tabtor {
 				'save' => true,
 				'multi_edit' => true,
 			);
-		
-		if(!$step || !bouncer($step, $steps)) {
+
+		if (!$step || !bouncer($step, $steps))
+		{
 			$step = 'browser';
 		}
-		
+
 		$this->$step();
 	}
 
@@ -147,12 +155,11 @@ class rah_tabtor {
 	 * @param string $message The message shown in the page header.
 	 */
 
-	public function browser($message='') {
-		
+	public function browser($message = '')
+	{
 		global $event;
-		
-		$out[] = 
-			
+
+		$out[] =
 			'<form method="post" action="index.php" class="multi_edit_form">'.n.
 			tInput().
 			
@@ -167,16 +174,18 @@ class rah_tabtor {
 			'			</tr>'.n.
 			'		</thead>'.n.
 			'		<tbody>'.n;
-		
+
 		$rs = 
 			safe_rows(
 				'*',
 				'rah_tabtor',
 				'1=1 ORDER BY label asc, page asc, tabgroup asc'
 			);
-			
-		if($rs) {
-			foreach($rs as $a) {
+
+		if ($rs)
+		{
+			foreach ($rs as $a)
+			{
 				$out[] = 
 					'			<tr>'.n.
 					'				<td><input type="checkbox" name="selected[]" value="'.$a['id'].'" /></td>'.n.
@@ -186,30 +195,30 @@ class rah_tabtor {
 					'			</tr>'.n;
 			}
 		}
-
-		else {
+		else
+		{
 			$out[] =
 				'			<tr>'.n.
 				'				<td colspan="4">'.
-				
+
 				gTxt(
 					'rah_tabtor_nothing_to_show',
 					array(
 						'{link}' => '<a href="?event='.$event.'&amp;step=edit">'.gTxt('rah_tabtor_start_by_link').'</a>'
 					), false
 				).
-				
+
 				'</td>'.n.
 				'			</tr>'.n;
 		}
-		
+
 		$out[] = 
 			'		</tbody>'.n.
 			'	</table>'.n.
 			'</div>'.n.
 			multi_edit(array('delete' => gTxt('rah_tabtor_delete')), $event, 'multi_edit').n.
 			'</form>';
-		
+
 		$this->pane($out, 'rah_tabtor', $message);
 	}
 
@@ -218,64 +227,66 @@ class rah_tabtor {
 	 * @param string $message The message shown in the page header.
 	 */
 
-	public function edit($message='') {
-		
+	public function edit($message = '')
+	{
 		global $event;
-		
+
 		extract(psa(array(
 			'label',
 			'page',
 			'tabgroup',
 			'position'
 		)));
-		
-		if(($id = gps('id')) && $id && !ps('id')) {
-			
+
+		if (($id = gps('id')) && $id && !ps('id'))
+		{
 			$rs = 
 				safe_row(
 					'*',
 					'rah_tabtor',
 					"id='".doSlash($id)."'"
 				);
-			
-			if(!$rs) {
+
+			if (!$rs)
+			{
 				$this->browser(array(gTxt('rah_tabtor_unknown_item'), E_ERROR));
 				return;
 			}
-			
+
 			extract($rs);
 		}
-		
+
 		$advanced_editor = get_pref('rah_tabtor_advanced_editor');
 		$tabs = $this->get_events();
-		
+
 		$out[] = 
 			'<form method="post" action="index.php">'.n.
 			tInput().
 			eInput($event).
 			sInput('save').
 			hInput('id', $id).
-			
+
 			'	<p>'.n.
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_label').'<br />'.n.
 			'			<input type="text" name="label" value="'.txpspecialchars($label).'" />'.n.
 			'		</label>'.n.
 			'	</p>'.n.
-			
+
 			'	<p>'.n.
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_page').'<br />'.n;
-		
-		if($tabs !== false && !$advanced_editor && (empty($page) || isset($tabs['events'][$page]))) {
+
+		if ($tabs !== false && !$advanced_editor && (empty($page) || isset($tabs['events'][$page])))
+		{
 			$out[] = selectInput('page', $tabs['events'], $page);
 		}
-		
-		else {
+		else
+		{
 			$out[] =
 				'			<input type="text" name="page" value="'.txpspecialchars($page).'" />'.n;
 		}
-		
+
 		$out[] =
 			
 			'		</label>'.n.
@@ -284,36 +295,34 @@ class rah_tabtor {
 			'	<p>'.n.
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_group').'<br />'.n;
-		
-		if($tabs !== false && !$advanced_editor && (empty($tabgroup) || isset($tabs['groups'][$tabgroup]))) {
+
+		if ($tabs !== false && !$advanced_editor && (empty($tabgroup) || isset($tabs['groups'][$tabgroup])))
+		{
 			$out[] = selectInput('tabgroup', $tabs['groups'], $tabgroup);
 		}
-		
-		else {
-			$out[] =
-				'			<input type="text" name="tabgroup" value="'.txpspecialchars($tabgroup).'" />'.n;
+		else
+		{
+			$out[] = '<input type="text" name="tabgroup" value="'.txpspecialchars($tabgroup).'" />'.n;
 		}
-		
+
 		$out[] =
 			
 			'		</label>'.n.
 			'	</p>'.n.
-			
+
 			'	<p>'.n.
 			'		<label>'.n.
 			'			'.gTxt('rah_tabtor_position').'<br />'.n.
 			selectInput('position', array_combine(range(1, 9), range(1, 9)), (int) $position);
-		
+
 		$out[] =
 			'		</label>'.n.
 			'	</p>'.n.
-			
 			'	<p>'.n.
 			'		<input type="submit" value="'.gTxt('rah_tabtor_save').'" class="publish" />'.n.
 			'	</p>'.n.
-			'</form>'
-		;
-		
+			'</form>';
+
 		$this->pane($out, 'rah_tabtor', $message);
 	}
 
@@ -321,8 +330,8 @@ class rah_tabtor {
 	 * Does the saving work
 	 */
 
-	public function save() {
-		
+	public function save()
+	{
 		extract(doSlash(doArray(psa(array(
 			'label',
 			'page',
@@ -330,26 +339,28 @@ class rah_tabtor {
 			'id',
 			'position'
 		)), 'trim')));
-		
-		if(!$label || !$page || !$tabgroup || !in_array($position, range(1, 9))) {
+
+		if (!$label || !$page || !$tabgroup || !in_array($position, range(1, 9)))
+		{
 			$this->edit(array(gTxt('rah_tabtor_required_fields'), E_ERROR));
 			return;
 		}
-		
-		if($id) {
-			
-			if(
+
+		if ($id)
+		{	
+			if (
 				!safe_row(
 					'id',
 					'rah_tabtor',
 					"id='$id' LIMIT 0, 1"
 				)
-			) {
+			)
+			{
 				$this->browser(array(gTxt('rah_tabtor_unknown_item'), E_ERROR));
 				return;
 			}
-			
-			if(
+
+			if (
 				safe_update(
 					'rah_tabtor',
 					"label='$label',
@@ -358,16 +369,17 @@ class rah_tabtor {
 					position='$position'",
 					"id='$id'"
 				) == false
-			) {
+			)
+			{
 				$this->edit(array(gTxt('rah_tabtor_save_failed'), E_ERROR));
 				return;
 			}
-			
+
 			$this->browser(gTxt('rah_tabtor_updated'));
 			return;
 		}
-		
-		if(
+
+		if (
 			safe_count(
 				'rah_tabtor',
 				"label='$label' and 
@@ -375,12 +387,13 @@ class rah_tabtor {
 				tabgroup='$tabgroup' and 
 				position='$position'"
 			) > 0
-		) {
+		)
+		{
 			$this->edit(array(gTxt('rah_tabtor_already_exists'), E_WARNING));
 			return;
 		}
-		
-		if(
+
+		if (
 			safe_insert(
 				'rah_tabtor',
 				"label='$label',
@@ -388,37 +401,40 @@ class rah_tabtor {
 				tabgroup='$tabgroup',
 				position='$position'"
 			) == false
-		) {
+		)
+		{
 			$this->edit(array(gTxt('rah_tabtor_save_failed'), E_ERROR));
 			return;
 		}
-		
+
 		register_tab($tabgroup, $page, gTxt($label));
 		$this->browser(gTxt('rah_tabtor_saved'));
 	}
-	
+
 	/**
 	 * Multi-edit handler
 	 */
-	
-	public function multi_edit() {
-		
+
+	public function multi_edit()
+	{	
 		extract(psa(array(
 			'selected',
 			'edit_method',
 		)));
-		
-		if(!is_string($edit_method) || empty($selected) || !is_array($selected)) {
+
+		if (!is_string($edit_method) || empty($selected) || !is_array($selected))
+		{
 			$this->browser(array(gTxt('rah_tabtor_select_something'), E_WARNING));
 			return;
 		}
-		
+
 		$method = 'multi_option_' . $edit_method;
-		
-		if(!method_exists($this, $method)) {
+
+		if (!method_exists($this, $method))
+		{
 			$method = 'browser';
 		}
-		
+
 		$this->$method();
 	}
 
@@ -426,18 +442,19 @@ class rah_tabtor {
 	 * Delete selected items
 	 */
 
-	private function multi_option_delete() {
-		
-		if(
+	private function multi_option_delete()
+	{
+		if (
 			safe_delete(
 				'rah_tabtor',
 				'id in('.implode(',', quote_list(ps('selected'))).')'
 			) === false
-		) {
+		)
+		{
 			$this->browser(array(gTxt('rah_tabtor_delete_failed'), E_ERROR));
 			return;
 		}
-		
+
 		$this->browser(gTxt('rah_tabtor_removed'));
 	}
 
@@ -448,16 +465,17 @@ class rah_tabtor {
 	 * @param string $message Message shown in the header.
 	 */
 
-	private function pane($out, $pagetop, $message) {
-		
+	private function pane($out, $pagetop, $message)
+	{
 		global $event;
-		
+
 		pagetop(gTxt($pagetop), $message);
-		
-		if(is_array($out)) {
+
+		if (is_array($out))
+		{
 			$out = implode('', $out);
 		}
-		
+
 		echo 
 			n.
 			'<h1 class="txp-heading">'.gTxt('rah_tabtor').'</h1>'.n.
@@ -473,34 +491,38 @@ class rah_tabtor {
 	 * Lists events and tab groups
 	 */
 
-	private function get_events() {
-		
+	private function get_events()
+	{
 		global $plugin_areas;
-		
-		if(!function_exists('areas') || !is_array(areas())) {
+
+		if (!function_exists('areas') || !is_array(areas()))
+		{
 			return false;
 		}
-		
+
 		$r = $plugin_areas;
-		
-		if($this->plugin_areas) {
+
+		if ($this->plugin_areas)
+		{
 			$plugin_areas = $this->plugin_areas;
 		}
-		
+
 		$out = array();
-		
-		foreach(areas() as $key => $group) {
+
+		foreach (areas() as $key => $group)
+		{
 			$out['groups'][$key] = gTxt('tab_'.$key);
-			
-			foreach($group as $title => $name) {
+
+			foreach ($group as $title => $name)
+			{
 				$out['events'][$name] = $title;
 			}
 		}
-		
+
 		$out['events'] = array_unique($out['events']);
 		asort($out['events']);
 		$plugin_areas = $r;
-		
+
 		return $out;
 	}
 
@@ -508,7 +530,8 @@ class rah_tabtor {
 	 * Redirect to the admin-side interface
 	 */
 
-	public function prefs() {
+	public function prefs()
+	{
 		header('Location: ?event=rah_tabtor');
 		echo 
 			'<p>'.n.
@@ -516,5 +539,3 @@ class rah_tabtor {
 			'</p>';
 	}
 }
-
-?>
