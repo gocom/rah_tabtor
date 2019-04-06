@@ -1,6 +1,6 @@
 h1. rah_tabtor
 
-"Packagist":https://packagist.org/packages/rah/rah_tabtor | "Issues":https://github.com/gocom/rah_tabtor | "Donate":https://rahforum.biz/donate/rah_tabtor
+"Packagist":https://packagist.org/packages/rah/rah_tabtor | "Issues":https://github.com/gocom/rah_tabtor/issues | "Donate":https://rahforum.biz/donate/rah_tabtor
 
 Rah_tabtor makes it possible to move "Textpattern CMS'":https://textpattern.com admin-side navigation items around in the in the main menubar. This allows moving admin-side panels from a menu to an another. For instance, with rah_tabtor you can move a plugin generated navigation item from the *Extensions* to the *Content* menu.
 
