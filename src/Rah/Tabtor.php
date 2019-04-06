@@ -300,7 +300,6 @@ final class Rah_Tabtor
     /**
      * Saves sent forms.
      */
-
     public function save()
     {
         extract(doSlash(doArray(psa([
