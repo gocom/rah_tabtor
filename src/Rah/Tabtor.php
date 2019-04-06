@@ -193,7 +193,7 @@ final class Rah_Tabtor
             }
 
             $out[] = n.tag_end('tbody').
-                n.tag_end('table')
+                n.tag_end('table').
                 n.tag_end('div').
                 multi_edit(['delete' => gTxt('rah_tabtor_delete')], $event, 'multiEdit').
                 n.tag_end('form');
