@@ -1,68 +1,58 @@
 h1. rah_tabtor
 
-p. "Project page":http://rahforum.biz/plugins/rah_tabtor | "Twitter":http://twitter.com/gocom | "GitHub":https://github.com/gocom/rah_tabtor | "Support forum":http://forum.textpattern.com/viewtopic.php?id=34815 | "Donate":http://rahforum.biz/donate/rah_tabtor
+"Issues":https://github.com/gocom/rah_tabtor | "Donate":https://rahforum.biz/donate/rah_tabtor
 
-p. Rah_tabtor makes it possible to move "Textpattern CMS'":http://textpattern.com admin-side navigation items around in the in the main menubar. This allows moving admin-side panels from a menu to an another. For instance, with rah_tabtor you can move a plugin generated navigation item from the *Extensions* to the *Content* menu.
+Rah_tabtor makes it possible to move "Textpattern CMS'":https://textpattern.com admin-side navigation items around in the in the main menubar. This allows moving admin-side panels from a menu to an another. For instance, with rah_tabtor you can move a plugin generated navigation item from the *Extensions* to the *Content* menu.
+
+h2. Install
+
+Using "Composer":https://getcomposer.org:
+
+bc. $ composer require rah/rah_tabtor
 
 h2. Basics
 
-p. Rah_tabtor let's you to clone and cut backend's navigation links from a tab area or a dropdown menu to an another. Whether a menu item can be merely cloned or cut depends on the origin of the item. This comes down to technical and implementation limitations. A plugin generated menu item can be cut and moved from the original spot, while built-in core items can only be cloned, creating duplicates. Removing the original menu item is not possible when it comes to core menus.
+Rah_tabtor let's you to clone and cut backend's navigation links from a tab area or a dropdown menu to an another. Whether a menu item can be merely cloned or cut depends on the origin of the item. This comes down to technical and implementation limitations. A plugin generated menu item can be cut and moved from the original spot, while built-in core items can only be cloned, creating duplicates. Removing the original menu item is not possible when it comes to core menus.
 
 h3. Cutting plugin generated menu items
 
-p. When rah_tabtor is used for a plugin generated menu item, the item can be cut or cloned by your choosing. The modified menu item is removed from the original spot and presented in the set target location or multiple locations. Multiple menu items that point to the same panel are created by creating additional rules for the same target menu item.
+When rah_tabtor is used for a plugin generated menu item, the item can be cut or cloned by your choosing. The modified menu item is removed from the original spot and presented in the set target location or multiple locations. Multiple menu items that point to the same panel are created by creating additional rules for the same target menu item.
 
 h3. Cloning built-in menu items
 
-p. Due to limitations, built-in core menus can only be cloned. Original menu items can not be removed or moved in a way or other. When rah_tabtor is used for a core menu item, a clone is created.
+Due to limitations, built-in core menus can only be cloned. Original menu items can not be removed or moved in a way or other. When rah_tabtor is used for a core menu item, a clone is created.
 
 h3. Hiding and restricting menus, creating dynamic panels
 
-p. Rah_tabtor doesn't hide or remove navigation items, but the plugin's sole purpose is exchanging items between menus. If you wish to change permissions and hide tabs based on a privilege level, I suggest checking out Redbot's "bot_privs":http://www.redbot.it/txp/plugin-bot_privs plugin or Stef Dawson's "smd_user_manager":http://stefdawson.com/smd_user_manager. Stef also has "smd_tabber":http://stefdawson.com/smd_tabber, which can be used to create dynamic panels using Textpattern's tag markup. These plugins play well together.
-
-h2. Requirements
-
-p. Rah_tabtor's minimum requirements:
-
-* Textpattern v4.5.0 or newer.
-* PHP 5.2 or newer
-
-h2. Installing
-
-p. Rah_tabtor's installation follows the standard plugin installation steps.
-
-# Download the plugin installation code.
-# Copy and paste the installation code into the _Install plugin_ box of your Textpattern Plugin pane.
-# Run the automated setup.
-# After the setup is done, activate the plugin. Done.
+Rah_tabtor doesn't hide or remove navigation items, but the plugin's sole purpose is exchanging items between menus. If you wish to change permissions and hide tabs based on a privilege level, I suggest checking out Redbot's "bot_privs":http://www.redbot.it/txp/plugin-bot_privs plugin or Stef Dawson's "smd_user_manager":http://stefdawson.com/smd_user_manager. Stef also has "smd_tabber":http://stefdawson.com/smd_tabber, which can be used to create dynamic panels using Textpattern's tag markup. These plugins play well together.
 
 h2. Configuring
 
-p. After you have installed the plugin, you can find its user-interface and options from "Extensions":http://textpattern.net/wiki/index.php?title=extensions menu, named as *Tabtor*. The plugin's panel allows creating, editing and deleting navigation item rules.
+After you have installed the plugin, you can find its user-interface and options from *Extensions* menu, named as *Tabtor*. The plugin's panel allows creating, editing and deleting navigation item rules.
 
 h2. Creating a new rule
 
-p. New rules that move navigation items can be created easily directly from rah_tabtor's admin-interface. From the *Tabtor* panel you can find a button labeled as *Create rule*. Pressing this button will bring up an editor. Present will be the following options.
+New rules that move navigation items can be created easily directly from rah_tabtor's admin-interface. From the *Tabtor* panel you can find a button labeled as *Create rule*. Pressing this button will bring up an editor. Present will be the following options.
 
 h3. Label
 
-p. Is the name of the new navigation item. The option supports language strings. To use a existing localized language string as the label, type in the string's name to the field. If the specified label doesn't match any language strings, it's displayed as it is.
+Is the name of the new navigation item. The option supports language strings. To use a existing localized language string as the label, type in the string's name to the field. If the specified label doesn't match any language strings, it's displayed as it is.
 
 h3. Event
 
-p. Is the moved menu item. From the list you can find any item that can be moved.
+Is the moved menu item. From the list you can find any item that can be moved.
 
 h3. Group
 
-p. Is the target navigation area, menu or tab where the menu item is moved to. Available options are Home, Content, Presentation, Admin and Extensions.
+Is the target navigation area, menu or tab where the menu item is moved to. Available options are Home, Content, Presentation, Admin and Extensions.
 
 h3. Position
 
-p. Is the menu item's sorting value, used to change the item's position in the target menu. The position will not affect existing built-in core menu items. The position is only used among moved menu items. All items that are moved using rah_tabtor will always appear after existing core menu items. This is due to technical limitations.
+Is the menu item's sorting value, used to change the item's position in the target menu. The position will not affect existing built-in core menu items. The position is only used among moved menu items. All items that are moved using rah_tabtor will always appear after existing core menu items. This is due to technical limitations.
 
 h2. Changelog
 
-h3. Version 0.3.2 - upcoming
+h3. Version 0.4.0 - upcoming
 
 * Improved: Cleaned up installer.
 

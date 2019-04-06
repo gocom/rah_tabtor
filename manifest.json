@@ -1,0 +1,15 @@
+{
+    "name": "rah_tabtor",
+    "description": "Exchange navigation links between tabs",
+    "version": "0.3.2",
+    "type": 3,
+    "author": "Jukka Svahn",
+    "author_uri": "https://github.com/gocom/rah_tabtor",
+    "order": 5,
+    "flags": 3,
+    "help": {"file" : ["./README.textile"]},
+    "code": {"file" : [
+        "./src/Rah/Tabtor.php",
+        "./src/Index.php"
+    ]}
+}
