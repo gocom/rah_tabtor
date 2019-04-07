@@ -24,37 +24,34 @@ Due to limitations, built-in core menus can only be cloned. Original menu items 
 
 h3. Hiding and restricting menus, creating dynamic panels
 
-Rah_tabtor doesn't hide or remove navigation items, but the plugin's sole purpose is exchanging items between menus. If you wish to change permissions and hide tabs based on a privilege level, I suggest checking out Redbot's "bot_privs":http://www.redbot.it/txp/plugin-bot_privs plugin or Stef Dawson's "smd_user_manager":http://stefdawson.com/smd_user_manager. Stef also has "smd_tabber":http://stefdawson.com/smd_tabber, which can be used to create dynamic panels using Textpattern's tag markup. These plugins play well together.
-
-h2. Configuring
-
-After you have installed the plugin, you can find its user-interface and options from *Extensions* menu, named as *Tabtor*. The plugin's panel allows creating, editing and deleting navigation item rules.
+Rah_tabtor doesn't hide or remove navigation items, but the plugin's sole purpose is exchanging items between menus. If you wish to change permissions and hide tabs based on a privilege level, I suggest checking out "rah_privileges":https://github.com/gocom/rah_privileges or Stef Dawson's "smd_user_manager":http://stefdawson.com/smd_user_manager. Stef also has "smd_tabber":http://stefdawson.com/smd_tabber, which can be used to create dynamic panels using Textpattern's tag markup.
 
 h2. Creating a new rule
 
-New rules that move navigation items can be created easily directly from rah_tabtor's admin-interface. From the *Tabtor* panel you can find a button labeled as *Create rule*. Pressing this button will bring up an editor. Present will be the following options.
+New rules that move navigation items can be created easily directly from rah_tabtor's admin-interface. From the *Tabtor* panel under *Extensions* menu you can find a button labeled as *Create rule*. Pressing this button will bring up an editor. Present will be the following options.
 
 h3. Label
 
-Is the name of the new navigation item. The option supports language strings. To use a existing localized language string as the label, type in the string's name to the field. If the specified label doesn't match any language strings, it's displayed as it is.
+Name of the new navigation item. The option supports language strings. To use a existing localized language string as the label, type in the string's name to the field. If the specified label doesn't match any language strings, it's displayed as it is.
 
 h3. Event
 
-Is the moved menu item. From the list you can find any item that can be moved.
+Moved menu item.
 
 h3. Group
 
-Is the target navigation area, menu or tab where the menu item is moved to. Available options are Home, Content, Presentation, Admin and Extensions.
+The target navigation area, menu or tab where the menu item is moved to. Available options are Home, Content, Presentation, Admin and Extensions.
 
 h3. Position
 
-Is the menu item's sorting value, used to change the item's position in the target menu. The position will not affect existing built-in core menu items. The position is only used among moved menu items. All items that are moved using rah_tabtor will always appear after existing core menu items. This is due to technical limitations.
+The menu item's sorting value, used to change the item's position in the target menu. The position will not affect existing built-in core menu items. The position is only used among moved menu items. All items that are moved using rah_tabtor will always appear after existing core menu items. This is due to technical limitations.
 
 h2. Changelog
 
 h3. Version 0.4.0 - upcoming
 
-* Improved: Cleaned up installer.
+* Cleaned up installer, refactor layout.
+* Now requires Textpattern 4.7.0 or newer.
 
 h3. Version 0.3.1 - 2012/08/30
 
