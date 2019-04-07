@@ -48,7 +48,7 @@ The menu item's sorting value, used to change the item's position in the target 
 
 h2. Changelog
 
-h3. Version 0.4.0 - upcoming
+h3. Version 0.4.0 - 2019/04/07
 
 * Cleaned up installer, refactor layout.
 * Now requires Textpattern 4.7.0 or newer.
