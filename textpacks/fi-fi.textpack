@@ -1,5 +1,6 @@
 #@admin
 #@language fi-fi
+tab_rah_tabtor => Tabtor
 rah_tabtor => Tabtor
 rah_tabtor_create_new => Luo määritys
 rah_tabtor_label => Nimi

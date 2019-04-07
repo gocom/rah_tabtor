@@ -1,5 +1,6 @@
 #@admin
 #Default language, en-us, en-gb
+tab_rah_tabtor => Tabtor
 rah_tabtor => Tabtor
 rah_tabtor_create_new => Create rule
 rah_tabtor_label => Label

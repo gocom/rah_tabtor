@@ -139,7 +139,7 @@ final class Rah_Tabtor
         global $event;
 
         $create = tag(
-            sLink('article', '', gTxt('rah_tabtor_create_new'), 'txp-button'),
+            sLink($event, 'edit', gTxt('rah_tabtor_create_new'), 'txp-button'),
             'div',
             ['class' => 'txp-control-panel']
         );
@@ -149,6 +149,8 @@ final class Rah_Tabtor
             'rah_tabtor',
             '1 = 1 order by label asc, page asc, tabgroup asc'
         );
+
+        $out = [];
 
         if ($rs) {
             $out[] = tag_start('form', [
@@ -233,18 +235,20 @@ final class Rah_Tabtor
         $tabs = $this->getEvents();
 
         if ($tabs !== false && (empty($page) || isset($tabs['events'][$page]))) {
-            $pageInput = selectInput('page', $tabs['events'], $page);
+            $pageInput = selectInput('page', $tabs['events'], $page, true, '', 'rah_tabtor_page');
         } else {
-            $pageInput = fInput('text', 'page', $page);
+            $pageInput = fInput('text', 'page', $page, '', '', '', '', '', 'rah_tabtor_page');
         }
 
         if ($tabs !== false && (empty($tabgroup) || isset($tabs['groups'][$tabgroup]))) {
-            $groupInput = selectInput('tabgroup', $tabs['groups'], $tabgroup);
+            $groupInput = selectInput('tabgroup', $tabs['groups'], $tabgroup, true, '', 'rah_tabtor_group');
         } else {
-            $groupInput = fInput('text', 'tabgroup', $tabgroup);
+            $groupInput = fInput('text', 'tabgroup', $tabgroup, '', '', '', '', '', 'rah_tabtor_group');
         }
 
-        $out[] = tag_start('form', [
+        $positions = array_combine(range(1, 9), range(1, 9));
+
+        $out = tag_start('form', [
                 'class' => 'txp-edit',
                 'method' => 'post',
                 'action' => 'index.php',
@@ -254,10 +258,12 @@ final class Rah_Tabtor
             sInput('save').
             hInput('id', $id).
 
+            hed(gTxt('rah_tabtor'), 2).
+
             inputLabel(
                 'rah_tabtor_label',
-                fInput('text', 'label', $label),
-                'label',
+                fInput('text', 'label', $label, '', '', '', '', '', 'rah_tabtor_label'),
+                'rah_tabtor_label',
                 '',
                 ['class' => 'txp-form-field']
             ).
@@ -265,7 +271,7 @@ final class Rah_Tabtor
             inputLabel(
                 'rah_tabtor_page',
                 $pageInput,
-                'page',
+                'rah_tabtor_page',
                 '',
                 ['class' => 'txp-form-field']
             ).
@@ -273,15 +279,22 @@ final class Rah_Tabtor
             inputLabel(
                 'rah_tabtor_group',
                 $groupInput,
-                'group',
+                'rah_tabtor_group',
                 '',
                 ['class' => 'txp-form-field']
             ).
 
             inputLabel(
                 'rah_tabtor_position',
-                selectInput('position', array_combine(range(1, 9), range(1, 9)), (int)$position),
-                'position',
+                tag_void('input', [
+                    'type' => 'number',
+                    'min' => 0,
+                    'max' => 99,
+                    'value' => $position,
+                    'name' => 'position',
+                    'id' => 'rah_tabtor_position',
+                ]),
+                'rah_tabtor_position',
                 '',
                 ['class' => 'txp-form-field']
             ).

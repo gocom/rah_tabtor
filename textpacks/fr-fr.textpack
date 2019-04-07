@@ -1,5 +1,6 @@
 #@admin
 #@language fr-fr
+tab_rah_tabtor => Tabtor
 rah_tabtor => Tabtor
 rah_tabtor_create_new => Créer une règle
 rah_tabtor_label => Label
