@@ -201,7 +201,7 @@ final class Rah_Tabtor
                 n.tag_end('form');
         }
 
-        $out = \Txp::get('\Textpattern\Admin\Table', $event)->render([], null, $create, implode(n, $out));
+        $out = \Txp::get('\Textpattern\Admin\Table', $event)->render([], null, $create, implode('', $out));
         $this->pane($out, 'rah_tabtor', $message);
     }
 
@@ -257,8 +257,6 @@ final class Rah_Tabtor
             eInput($event).
             sInput('save').
             hInput('id', $id).
-
-            hed(gTxt('rah_tabtor'), 2).
 
             inputLabel(
                 'rah_tabtor_label',
