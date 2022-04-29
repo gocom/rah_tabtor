@@ -17,7 +17,7 @@
         "source": "https://github.com/gocom/rah_tabtor"
     },
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.2.0",
         "textpattern/lock": ">=4.7.0",
         "textpattern/installer": "*"
     },

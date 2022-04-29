@@ -4,7 +4,7 @@
  * rah_tabtor - Move around Textpattern CMS' admin-side navigation links
  * https://github.com/gocom/rah_tabtor
  *
- * Copyright (C) 2019 Jukka Svahn
+ * Copyright (C) 2022 Jukka Svahn
  *
  * This file is part of rah_tabtor.
  *
@@ -51,7 +51,7 @@ final class Rah_Tabtor
     /**
      * Installer.
      */
-    public function install()
+    public function install(): void
     {
         safe_create(
             'rah_tabtor',
@@ -67,7 +67,7 @@ final class Rah_Tabtor
     /**
      * Uninstaller.
      */
-    public function uninstall()
+    public function uninstall(): void
     {
         safe_drop('rah_tabtor');
     }
@@ -75,7 +75,7 @@ final class Rah_Tabtor
     /**
      * Registers the tabs.
      */
-    public function register()
+    public function register(): void
     {
         global $plugin_areas;
 
@@ -109,7 +109,7 @@ final class Rah_Tabtor
     /**
      * Delivers panes.
      */
-    public function panes()
+    public function panes(): void
     {
         require_privs('rah_tabtor');
 
@@ -132,9 +132,9 @@ final class Rah_Tabtor
     /**
      * The main pane.
      *
-     * @param string $message The activity message
+     * @param string|array $message The activity message
      */
-    public function browser($message = '')
+    public function browser($message = ''): void
     {
         global $event;
 
@@ -208,9 +208,9 @@ final class Rah_Tabtor
     /**
      * The editor pane.
      *
-     * @param string $message The activity message
+     * @param string|array $message The activity message
      */
-    public function edit($message = '')
+    public function edit($message = ''): void
     {
         global $event;
 
@@ -221,7 +221,9 @@ final class Rah_Tabtor
             'position'
         ]));
 
-        if (($id = gps('id')) && $id && !ps('id')) {
+        $id = gps('id');
+
+        if ($id && !ps('id')) {
             $rs = safe_row('*', 'rah_tabtor', "id='".doSlash($id)."'");
 
             if (!$rs) {
@@ -232,15 +234,19 @@ final class Rah_Tabtor
             extract($rs);
         }
 
+        $caption = $id
+            ? gTxt('rah_tabtor_edit')
+            : gTxt('rah_tabtor_create_new');
+
         $tabs = $this->getEvents();
 
-        if ($tabs !== false && (empty($page) || isset($tabs['events'][$page]))) {
+        if ($tabs && (empty($page) || isset($tabs['events'][$page]))) {
             $pageInput = selectInput('page', $tabs['events'], $page, true, '', 'rah_tabtor_page');
         } else {
             $pageInput = fInput('text', 'page', $page, '', '', '', '', '', 'rah_tabtor_page');
         }
 
-        if ($tabs !== false && (empty($tabgroup) || isset($tabs['groups'][$tabgroup]))) {
+        if ($tabs && (empty($tabgroup) || isset($tabs['groups'][$tabgroup]))) {
             $groupInput = selectInput('tabgroup', $tabs['groups'], $tabgroup, true, '', 'rah_tabtor_group');
         } else {
             $groupInput = fInput('text', 'tabgroup', $tabgroup, '', '', '', '', '', 'rah_tabtor_group');
@@ -257,6 +263,8 @@ final class Rah_Tabtor
             eInput($event).
             sInput('save').
             hInput('id', $id).
+
+            hed($caption, 2).
 
             inputLabel(
                 'rah_tabtor_label',
@@ -311,8 +319,10 @@ final class Rah_Tabtor
     /**
      * Saves sent forms.
      */
-    public function save()
+    public function save(): void
     {
+        global $event;
+
         extract(doSlash(doArray(psa([
             'label',
             'page',
@@ -325,6 +335,10 @@ final class Rah_Tabtor
             $this->edit([gTxt('rah_tabtor_required_fields'), E_ERROR]);
             return;
         }
+
+        $reloadLink = strong(href(gTxt('rah_tabtor_reload'), [
+            'event' => $event,
+        ]));
 
         if ($id) {
             if (!safe_row('id', 'rah_tabtor', "id='$id' limit 0, 1")) {
@@ -346,7 +360,10 @@ final class Rah_Tabtor
                 return;
             }
 
-            $this->browser(gTxt('rah_tabtor_updated'));
+            $this->browser(gTxt('rah_tabtor_updated', [
+                '{link}' => $reloadLink,
+            ], ''));
+
             return;
         }
 
@@ -377,13 +394,16 @@ final class Rah_Tabtor
         }
 
         register_tab($tabgroup, $page, gTxt($label));
-        $this->browser(gTxt('rah_tabtor_saved'));
+
+        $this->browser(gTxt('rah_tabtor_saved', [
+            '{link}' => $reloadLink,
+        ], ''));
     }
 
     /**
      * Multi-edit handler.
      */
-    public function multiEdit()
+    public function multiEdit(): void
     {
         extract(psa([
             'selected',
@@ -412,8 +432,10 @@ final class Rah_Tabtor
     /**
      * Deletes selected items.
      */
-    private function multiOptionDelete()
+    private function multiOptionDelete(): void
     {
+        global $event;
+
         $delete = safe_delete(
             'rah_tabtor',
             'id in('.implode(',', quote_list(ps('selected'))).')'
@@ -424,17 +446,23 @@ final class Rah_Tabtor
             return;
         }
 
-        $this->browser(gTxt('rah_tabtor_removed'));
+        $reloadLink = strong(href(gTxt('rah_tabtor_reload'), [
+            'event' => $event,
+        ]));
+
+        $this->browser(gTxt('rah_tabtor_removed', [
+            '{link}' => $reloadLink,
+        ], ''));
     }
 
     /**
      * Outputs the panel's HTML markup and sets the page title.
      *
-     * @param string|array $out     Pane markup
-     * @param string       $pagetop Page title
-     * @param string       $message Activity message
+     * @param string|array $out Pane markup
+     * @param string $pagetop Page title
+     * @param string|array $message Activity message
      */
-    private function pane($out, $pagetop, $message)
+    private function pane($out, $pagetop, $message): void
     {
         pagetop(gTxt($pagetop), $message);
         echo $out;
@@ -445,12 +473,12 @@ final class Rah_Tabtor
      *
      * @return array List of events
      */
-    private function getEvents()
+    private function getEvents(): array
     {
         global $plugin_areas;
 
         if (!function_exists('areas') || !is_array(areas())) {
-            return false;
+            return [];
         }
 
         $r = $plugin_areas;
@@ -481,7 +509,7 @@ final class Rah_Tabtor
      *
      * Redirects to the admin-side interface.
      */
-    public function prefs()
+    public function prefs(): void
     {
         header('Location: ?event=rah_tabtor');
         echo graf(href(gTxt('continue'), ['event' => 'rah_tabtor']));

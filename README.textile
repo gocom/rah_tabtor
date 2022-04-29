@@ -50,6 +50,11 @@ The menu item's sorting value, used to change the item's position in the target 
 
 h2. Changelog
 
+h3. Version 0.5.0 - upcoming
+
+* Touchups and usability updates to admin user-inferface.
+* Now requires PHP >= 7.2.0.
+
 h3. Version 0.4.0 - 2019/04/07
 
 * Cleaned up installer, refactor layout.
